@@ -107,6 +107,8 @@ $route['vendor-contact-list'] = 'master/vendor_contact_list';
 $route['vendor-contact-list/edit/(:num)'] = 'master/vendor_contact_list/$1';
 
 $route['invoice-generate'] = 'master/invoice_generate';
+$route['invoice-list'] = 'master/invoice_list';
+$route['invoice-edit/(:num)'] = 'master/invoice_generate_edit/$1';
 
 $route['customer-list'] = 'master/customer_list';
 $route['customer-list/(:num)'] = 'master/customer_list/$1';

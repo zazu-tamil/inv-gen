@@ -23,60 +23,357 @@ class Master extends CI_Controller
             exit;
         }
 
-
         $data['title'] = 'Invoice Generate';
         $data['js'] = 'invoice-generate.inc';
 
-
         if ($this->input->post('mode') == 'Add') {
-            $ins = array(
-                'staff_name' => $this->input->post('staff_name'),
-                'user_name' => $this->input->post('user_name'),
-                'user_pwd' => $this->input->post('user_pwd'),
-                'user_type' => 'Admin',
-                'ref_id' => '0',
-                'status' => $this->input->post('status')
+
+            $this->db->trans_start();
+            $srch_company_id = $this->input->post('company_id');
+            $srch_customer_id = $this->input->post('customer_id');
+
+            $insert_data = array(
+                'company_id' => $srch_company_id,
+                'customer_id' => $srch_customer_id,
+                'invoice_no' => $this->input->post('invoice_no'),
+                'bank_id' => $this->input->post('bank_id'),
+                'your_ref_no' => $this->input->post('your_ref_no'),
+                'invoice_terms' => $this->input->post('invoice_terms'),
+                'invoice_date' => $this->input->post('invoice_date'),
+                'status' => $this->input->post('status') ?: 'Active',
             );
 
-            $this->db->insert('user_login_info', $ins);
-            redirect('user-list/');
-        }
+            $this->db->insert('invoice_info', $insert_data);
+            $invoice_id = $this->db->insert_id();
 
+            $item_descs = $this->input->post('item_desc');
+            $hsn_codes = $this->input->post('hsn_code');
+            $uoms = $this->input->post('uom');
+            $gst = $this->input->post('gst');
+            $qtys = $this->input->post('qty');
+            $rates = $this->input->post('rate');
+            $amounts = $this->input->post('amount');
+
+            if (!empty($item_descs)) {
+                foreach ($item_descs as $index => $item_desc) {
+                    if (!empty($item_desc)) {
+                        $insert_item_data = array(
+                            'invoice_id' => $invoice_id,
+                            'item_desc' => $item_descs[$index] ?? '',
+                            'hsn_code' => $hsn_codes[$index] ?? '',
+                            'uom' => $uoms[$index] ?? '',
+                            'gst' => $gst[$index] ?? '',
+                            'qty' => $qtys[$index] ?? 0,
+                            'rate' => $rates[$index] ?? 0.00,
+                            'amount' => $amounts[$index] ?? 0.00,
+                            'status' => 'Active'
+
+                        );
+                        $this->db->insert('invoice_item_info', $insert_item_data);
+                    }
+                }
+            }
+
+            $this->db->trans_complete();
+            if ($this->db->trans_status() === FALSE) {
+                $this->session->set_flashdata('error', 'Error saving data. Please try again.');
+            } else {
+                $this->session->set_flashdata('success', 'Invoice saved successfully.');
+            }
+
+            redirect('invoice-list');
+        }
 
         $data['status_opt'] = array('Active' => 'Active', 'Inactive' => 'Inactive');
 
         // Companies
         $data['company_opt'] = array();
-
-        $query = $this->db->query("
-            SELECT 
-            company_id, 
-            company_name 
-            FROM company_info 
-            WHERE status = 'Active' 
-            ORDER BY company_name");
+        $query = $this->db->query("SELECT company_id, company_name FROM company_info WHERE status = 'Active' ORDER BY company_name");
         foreach ($query->result_array() as $row) {
             $data['company_opt'][$row['company_id']] = $row['company_name'];
         }
 
         // Customers
-        
         $data['customer_opt'] = array();
-        $query = $this->db->query("
-            SELECT 
-            customer_id, 
-            customer_name 
-            FROM customer_info 
-            WHERE status = 'Active' 
-            ORDER BY customer_name");
+        $query = $this->db->query("SELECT customer_id, customer_name FROM customer_info WHERE status = 'Active' ORDER BY customer_name");
         foreach ($query->result_array() as $row) {
             $data['customer_opt'][$row['customer_id']] = $row['customer_name'];
         }
-         
- 
+
+        // Banks
+        $data['bank_opt'] = array();
+        $query = $this->db->query("SELECT bank_id, bank_name FROM company_bank_info WHERE status = 'Active' ORDER BY bank_name");
+        foreach ($query->result_array() as $row) {
+            $data['bank_opt'][$row['bank_id']] = $row['bank_name'];
+        }
 
         $this->load->view('page/master/invoice-generate', $data);
     }
+    public function invoice_generate_edit($invoice_id = null)
+    {
+        if (!$this->session->userdata(SESS_HD . 'logged_in'))
+            redirect('login'); // or your login path
+
+        if (
+            $this->session->userdata(SESS_HD . 'user_type') != 'Admin'
+            && $this->session->userdata(SESS_HD . 'user_type') != 'Staff'
+        ) {
+            echo "<h3 style='color:red;text-align:center;margin-top:50px;'>Permission Denied</h3>";
+            exit;
+        }
+
+        $data['title'] = 'Invoice Generate';
+        $data['js'] = 'invoice-generate.inc';
+
+        // ==================== EDIT MODE ====================
+        if ($this->input->post('mode') == 'Edit') {
+
+            $this->db->trans_start();
+
+            $invoice_id = $this->input->post('invoice_id');
+
+            $srch_company_id = $this->input->post('company_id');
+            $srch_customer_id = $this->input->post('customer_id');
+
+            // UPDATE MAIN INVOICE
+            $update_data = array(
+                'company_id' => $srch_company_id,
+                'customer_id' => $srch_customer_id,
+                'invoice_no' => $this->input->post('invoice_no'),
+                'bank_id' => $this->input->post('bank_id'),
+                'your_ref_no' => $this->input->post('your_ref_no'),
+                'invoice_terms' => $this->input->post('invoice_terms'),
+                'invoice_date' => $this->input->post('invoice_date'),
+                'status' => $this->input->post('status') ?: 'Active',
+            );
+
+            $this->db->where('invoice_id', $invoice_id);
+            $this->db->update('invoice_info', $update_data);
+
+            // DELETE OLD ITEMS
+            $this->db->where('invoice_id', $invoice_id);
+            $this->db->delete('invoice_item_info');
+
+            // INSERT NEW ITEMS
+            $item_descs = $this->input->post('item_desc');
+            $hsn_codes = $this->input->post('hsn_code');
+            $uoms = $this->input->post('uom');
+            $gst = $this->input->post('gst');
+            $qtys = $this->input->post('qty');
+            $rates = $this->input->post('rate');
+            $amounts = $this->input->post('amount');
+
+            if (!empty($item_descs) && is_array($item_descs)) {
+                foreach ($item_descs as $index => $item_desc) {
+                    if (!empty(trim($item_desc))) {
+                        $insert_item_data = array(
+                            'invoice_id' => $invoice_id,
+                            'item_desc' => trim($item_descs[$index] ?? ''),
+                            'hsn_code' => trim($hsn_codes[$index] ?? ''),
+                            'uom' => trim($uoms[$index] ?? ''),
+                            'gst' => $gst[$index] ?? 0,
+                            'qty' => $qtys[$index] ?? 0,
+                            'rate' => $rates[$index] ?? 0.00,
+                            'amount' => $amounts[$index] ?? 0.00,
+                            'status' => 'Active'
+                        );
+
+                        $this->db->insert('invoice_item_info', $insert_item_data);
+                    }
+                }
+            }
+
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE) {
+                $this->session->set_flashdata('error', 'Error updating invoice. Please try again.');
+            } else {
+                $this->session->set_flashdata('success', 'Invoice updated successfully.');
+            }
+
+            redirect('invoice-list');
+        }
+        // ==================================================
+
+        $data['status_opt'] = array('Active' => 'Active', 'Inactive' => 'Inactive');
+
+        // Companies
+        $data['company_opt'] = array('' => 'Select Company');
+        $query = $this->db->query("SELECT company_id, company_name FROM company_info WHERE status = 'Active' ORDER BY company_name");
+        foreach ($query->result_array() as $row) {
+            $data['company_opt'][$row['company_id']] = $row['company_name'];
+        }
+
+        // Customers
+        $data['customer_opt'] = array('' => 'Select Customer');
+        $query = $this->db->query("SELECT customer_id, customer_name FROM customer_info WHERE status = 'Active' ORDER BY customer_name");
+        foreach ($query->result_array() as $row) {
+            $data['customer_opt'][$row['customer_id']] = $row['customer_name'];
+        }
+
+        // Banks
+        $data['bank_opt'] = array('' => 'Select Bank');
+        $query = $this->db->query("SELECT bank_id, bank_name FROM company_bank_info WHERE status = 'Active' ORDER BY bank_name");
+        foreach ($query->result_array() as $row) {
+            $data['bank_opt'][$row['bank_id']] = $row['bank_name'];
+        }
+
+        // Load main invoice record
+        if (!$invoice_id || !is_numeric($invoice_id)) {
+            redirect('invoice-list');
+        }
+
+        $sql = "SELECT * FROM invoice_info WHERE invoice_id = ? AND status != 'Delete'";
+        $query = $this->db->query($sql, array($invoice_id));
+
+        if ($query->num_rows() == 0) {
+            $this->session->set_flashdata('error', 'Invoice not found or deleted.');
+            redirect('invoice-list');
+        }
+
+        $data['main'] = $query->row_array();
+
+        // Load invoice items with joins
+        $sql = "
+            SELECT  
+                a.invoice_id,
+                b.*
+            FROM invoice_info AS a
+            LEFT JOIN invoice_item_info AS b ON a.invoice_id = b.invoice_id AND b.status = 'Active'
+            LEFT JOIN company_info AS c ON a.company_id = c.company_id
+            LEFT JOIN customer_info AS d ON a.customer_id = d.customer_id
+            WHERE a.invoice_id = ? 
+            AND a.status = 'Active'
+            ORDER BY b.invoice_item_id ASC
+        ";
+
+        $query = $this->db->query($sql, array($invoice_id));
+        $data['item_rows'] = $query->result_array();
+
+        $this->load->view('page/master/invoice-generate-edit', $data);
+    }
+
+    public function invoice_list()
+    {
+        if (!$this->session->userdata(SESS_HD . 'logged_in'))
+            redirect();
+        if (
+            $this->session->userdata(SESS_HD . 'user_type') != 'Admin'
+            && $this->session->userdata(SESS_HD . 'user_type') != 'Staff'
+        ) {
+            echo "<h3 style='color:red;'>Permission Denied</h3>";
+            exit;
+        }
+
+        $data['js'] = 'invoice-list.inc';
+        $data['title'] = 'Invoice List';
+        $where = "a.status != 'Delete'";
+
+        if ($this->input->post('srch_company_id') !== null) {
+            $data['srch_company_id'] = $srch_company_id = $this->input->post('srch_company_id');
+            $this->session->set_userdata('srch_company_id', $srch_company_id);
+        } elseif ($this->session->userdata('srch_company_id')) {
+            $data['srch_company_id'] = $srch_company_id = $this->session->userdata('srch_company_id');
+        } else {
+            $data['srch_company_id'] = $srch_company_id = '';
+        }
+
+        if (!empty($srch_company_id)) {
+            $where .= " AND (a.company_id = '" . $this->db->escape_str($srch_company_id) . "')"; // FIXED companey_id
+        }
+
+        if ($this->input->post('srch_customer_id') !== null) {
+            $data['srch_customer_id'] = $srch_customer_id = $this->input->post('srch_customer_id');
+            $this->session->set_userdata('srch_customer_id', $srch_customer_id);
+        } elseif ($this->session->userdata('srch_customer_id')) {
+            $data['srch_customer_id'] = $srch_customer_id = $this->session->userdata('srch_customer_id');
+        } else {
+            $data['srch_customer_id'] = $srch_customer_id = '';
+        }
+
+        if (!empty($srch_customer_id)) {
+            $where .= " AND (a.customer_id = '" . $this->db->escape_str($srch_customer_id) . "')";
+        }
+
+        $this->load->library('pagination');
+        // REMOVED duplicate delete condition
+        $this->db->from('invoice_info as a');
+        $this->db->where($where);
+        $this->db->order_by('a.invoice_id', 'DESC');
+
+        $data['total_records'] = $cnt = $this->db->count_all_results();
+
+        $data['sno'] = $this->uri->segment(2, 0);
+
+        $config['base_url'] = trim(site_url('invoice-list/'), '/' . $this->uri->segment(2, 0));
+        $config['total_rows'] = $cnt;
+        $config['per_page'] = 50;
+        $config['uri_segment'] = 2;
+        $config['attributes'] = array('class' => 'page-link');
+        $config['full_tag_open'] = '<ul class="pagination pagination-sm no-margin pull-right">';
+        $config['full_tag_close'] = '</ul>';
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><a href="#" class="page-link">';
+        $config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+        $config['prev_link'] = "Prev";
+        $config['next_link'] = "Next";
+        $this->pagination->initialize($config);
+
+        // Companies
+        $data['company_opt'] = array();
+        $query = $this->db->query("SELECT company_id, company_name FROM company_info WHERE status = 'Active' ORDER BY company_name");
+        foreach ($query->result_array() as $row) {
+            $data['company_opt'][$row['company_id']] = $row['company_name'];
+        }
+
+        // Customers
+        $data['customer_opt'] = array();
+        $query = $this->db->query("SELECT customer_id, customer_name FROM customer_info WHERE status = 'Active' ORDER BY customer_name");
+        foreach ($query->result_array() as $row) {
+            $data['customer_opt'][$row['customer_id']] = $row['customer_name'];
+        }
+
+        $sql = "
+        SELECT 
+                c.company_name,
+                d.customer_name,
+                a.invoice_no,
+                a.invoice_date,
+                a.bank_id,
+                a.invoice_id,
+                a.your_ref_no,
+                b.*,
+                e.bank_name
+            FROM invoice_info as a
+            LEFT JOIN invoice_item_info as b ON a.invoice_id = b.invoice_id AND b.status='Active'
+            LEFT JOIN company_info as c ON a.company_id = c.company_id AND c.status='Active'
+            LEFT JOIN customer_info as d ON a.customer_id = d.customer_id AND d.status='Active'
+            left join company_bank_info as e on a.bank_id = e.bank_id AND e.status='Active'
+            WHERE a.status='Active'
+                AND ( '" . $this->db->escape_str($srch_customer_id) . "' = '' OR a.customer_id = '" . $this->db->escape_str($srch_customer_id) . "' )
+                AND ( '" . $this->db->escape_str($srch_company_id) . "' = '' OR a.company_id = '" . $this->db->escape_str($srch_company_id) . "' )
+            GROUP BY a.invoice_id
+            ORDER BY a.invoice_id DESC
+            LIMIT " . $this->uri->segment(2, 0) . "," . $config['per_page'] . "
+        ";
+
+
+        $query = $this->db->query($sql);
+        $data['record_list'] = $query->result_array();
+
+        $data['pagination'] = $this->pagination->create_links();
+        $this->load->view('page/master/invoice-list', $data);
+    }
+
 
     public function company_list()
     {
@@ -91,17 +388,17 @@ class Master extends CI_Controller
         $data['js'] = 'company-list.inc';
 
         // Handle Add (only if none exists)
-        if ($this->input->post('mode') == 'Add') { 
+        if ($this->input->post('mode') == 'Add') {
 
             $ins = array(
                 'company_name' => $this->input->post('company_name'),
-                'contact_name' => $this->input->post('contact_name'), 
+                'contact_name' => $this->input->post('contact_name'),
                 'address' => $this->input->post('address'),
-                'GST' => $this->input->post('GST'), 
+                'GST' => $this->input->post('GST'),
                 'mobile' => $this->input->post('mobile'),
                 'state' => $this->input->post('state'),
                 'quote_terms' => $this->input->post('quote_terms'),
-                'invoice_terms' => $this->input->post('invoice_terms'), 
+                'invoice_terms' => $this->input->post('invoice_terms'),
                 'email' => $this->input->post('email'),
                 'status' => $this->input->post('status')
             );
@@ -111,20 +408,20 @@ class Master extends CI_Controller
         }
 
         // Handle Edit (only one allowed)
-        if ($this->input->post('mode') == 'Edit') { 
+        if ($this->input->post('mode') == 'Edit') {
 
             $upd = array(
-                 'company_name' => $this->input->post('company_name'),
-                'contact_name' => $this->input->post('contact_name'), 
+                'company_name' => $this->input->post('company_name'),
+                'contact_name' => $this->input->post('contact_name'),
                 'address' => $this->input->post('address'),
-                'GST' => $this->input->post('GST'), 
+                'GST' => $this->input->post('GST'),
                 'mobile' => $this->input->post('mobile'),
                 'state' => $this->input->post('state'),
                 'quote_terms' => $this->input->post('quote_terms'),
-                'invoice_terms' => $this->input->post('invoice_terms'), 
+                'invoice_terms' => $this->input->post('invoice_terms'),
                 'email' => $this->input->post('email'),
                 'status' => $this->input->post('status')
-            ); 
+            );
 
             $this->db->where('company_id', $this->input->post('company_id'));
             $this->db->update('company_info', $upd);
@@ -163,7 +460,7 @@ class Master extends CI_Controller
         $config['next_link'] = "Next";
         $this->pagination->initialize($config);
 
-        
+
 
 
         $sql = "
@@ -192,7 +489,7 @@ class Master extends CI_Controller
     }
 
 
-    public function company_bank_list($page = 1) 
+    public function company_bank_list($page = 1)
     {
         if (!$this->session->userdata(SESS_HD . 'logged_in'))
             redirect();
@@ -206,89 +503,89 @@ class Master extends CI_Controller
         $data['js'] = 'company-bank.inc';
 
         // Handle Add
-   if ($this->input->post('mode') == 'Add') {
+        if ($this->input->post('mode') == 'Add') {
 
-    $upload_path = './bank_qr_code/';
-    if (!is_dir($upload_path)) {
-        mkdir($upload_path, 0777, true);
-    }
+            $upload_path = './bank_qr_code/';
+            if (!is_dir($upload_path)) {
+                mkdir($upload_path, 0777, true);
+            }
 
-    $config['upload_path'] = $upload_path;
-    $config['allowed_types'] = 'jpg|jpeg|png';
-    $config['max_size'] = 2048;
+            $config['upload_path'] = $upload_path;
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['max_size'] = 2048;
 
-    $this->load->library('upload', $config);
+            $this->load->library('upload', $config);
 
-    $qr_code_img = ''; // initialize properly
+            $qr_code_img = ''; // initialize properly
 
-    if (!empty($_FILES['qr_code']['name'])) {
-        if ($this->upload->do_upload('qr_code')) {
-            $qr_code_img = $this->upload->data('file_name');
-        } else {
-            // Log upload error if needed
-            log_message('error', 'QR Upload failed: ' . $this->upload->display_errors());
+            if (!empty($_FILES['qr_code']['name'])) {
+                if ($this->upload->do_upload('qr_code')) {
+                    $qr_code_img = $this->upload->data('file_name');
+                } else {
+                    // Log upload error if needed
+                    log_message('error', 'QR Upload failed: ' . $this->upload->display_errors());
+                }
+            }
+
+            $ins = array(
+                'company' => $this->input->post('company'),
+                'bank_name' => $this->input->post('bank_name'),
+                'branch' => $this->input->post('branch'),
+                'account_type' => $this->input->post('account_type'),
+                'account_no' => $this->input->post('account_no'),
+                'IFSC_code' => $this->input->post('IFSC_code'),
+                'remarks' => $this->input->post('remarks'),
+                'qr_code' => $qr_code_img,
+                'status' => $this->input->post('status') ?: 'Active'
+            );
+
+            $this->db->insert('company_bank_info', $ins);
+            redirect('company-bank-list');
         }
-    }
-
-    $ins = array(
-        'company'        => $this->input->post('company'),
-        'bank_name'      => $this->input->post('bank_name'),
-        'branch'         => $this->input->post('branch'),
-        'account_type'   => $this->input->post('account_type'),
-        'account_no'     => $this->input->post('account_no'),
-        'IFSC_code'      => $this->input->post('IFSC_code'),
-        'remarks'        => $this->input->post('remarks'),
-        'qr_code'        => $qr_code_img,
-        'status'         => $this->input->post('status') ?: 'Active'
-    );
-
-    $this->db->insert('company_bank_info', $ins);
-    redirect('company-bank-list');
-}
 
 
-/* -------------------------------
-   EDIT MODE
--------------------------------- */
-if ($this->input->post('mode') == 'Edit') {
+        /* -------------------------------
+           EDIT MODE
+        -------------------------------- */
+        if ($this->input->post('mode') == 'Edit') {
 
-    $upload_path = './bank_qr_code/';
-    if (!is_dir($upload_path)) {
-        mkdir($upload_path, 0777, true);
-    }
+            $upload_path = './bank_qr_code/';
+            if (!is_dir($upload_path)) {
+                mkdir($upload_path, 0777, true);
+            }
 
-    $config['upload_path'] = $upload_path;
-    $config['allowed_types'] = 'jpg|jpeg|png';
-    $config['max_size'] = 2048;
+            $config['upload_path'] = $upload_path;
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['max_size'] = 2048;
 
-    $this->load->library('upload', $config);
+            $this->load->library('upload', $config);
 
-    $qr_code_img = $this->input->post('existing_qr_code') ?? ''; // optional hidden field
+            $qr_code_img = $this->input->post('existing_qr_code') ?? ''; // optional hidden field
 
-    if (!empty($_FILES['qr_code']['name'])) {
-        if ($this->upload->do_upload('qr_code')) {
-            $qr_code_img = $this->upload->data('file_name');
-        } else {
-            log_message('error', 'QR Upload failed: ' . $this->upload->display_errors());
+            if (!empty($_FILES['qr_code']['name'])) {
+                if ($this->upload->do_upload('qr_code')) {
+                    $qr_code_img = $this->upload->data('file_name');
+                } else {
+                    log_message('error', 'QR Upload failed: ' . $this->upload->display_errors());
+                }
+            }
+
+            $upd = array(
+                'company' => $this->input->post('company'),
+                'bank_name' => $this->input->post('bank_name'),
+                'branch' => $this->input->post('branch'),
+                'account_type' => $this->input->post('account_type'),
+                'account_no' => $this->input->post('account_no'),
+                'IFSC_code' => $this->input->post('IFSC_code'),
+                'remarks' => $this->input->post('remarks'),
+                'qr_code' => $qr_code_img,
+                'status' => $this->input->post('status') ?: 'Active'
+            );
+
+            $this->db->where('bank_id', $this->input->post('bank_id'));
+            $this->db->update('company_bank_info', $upd);
+            redirect('company-bank-list');
         }
-    }
-
-    $upd = array(
-        'company'        => $this->input->post('company'),
-        'bank_name'      => $this->input->post('bank_name'),
-        'branch'         => $this->input->post('branch'),
-        'account_type'   => $this->input->post('account_type'),
-        'account_no'     => $this->input->post('account_no'),
-        'IFSC_code'      => $this->input->post('IFSC_code'),
-        'remarks'        => $this->input->post('remarks'),
-        'qr_code'        => $qr_code_img,
-        'status'         => $this->input->post('status') ?: 'Active'
-    );
-
-    $this->db->where('bank_id', $this->input->post('bank_id'));
-    $this->db->update('company_bank_info', $upd);
-    redirect('company-bank-list');
-}
 
 
         // Handle Search Filter
@@ -1150,14 +1447,13 @@ if ($this->input->post('mode') == 'Edit') {
         if ($this->input->post('mode') == 'Add') {
             $ins = array(
                 'customer_name' => $this->input->post('customer_name'),
-                'contact_name' => $this->input->post('contact_name'), 
-                'state' => $this->input->post('state'),
+                'contact_name' => $this->input->post('contact_name'),
                 'address' => $this->input->post('address'),
                 'mobile' => $this->input->post('mobile'),
-                'mobile_alt' => $this->input->post('mobile_alt'), 
+                'mobile_alt' => $this->input->post('mobile_alt'),
                 'email' => $this->input->post('email'),
                 'remarks' => $this->input->post('remarks'),
-                'gst' => $this->input->post('gst'), 
+                'gst' => $this->input->post('gst'),
                 'status' => $this->input->post('status'),
                 'created_by' => $this->session->userdata(SESS_HD . 'user_id'),
                 'created_date' => date('Y-m-d H:i:s'),
@@ -1168,14 +1464,13 @@ if ($this->input->post('mode') == 'Edit') {
         if ($this->input->post('mode') == 'Edit') {
             $upd = array(
                 'customer_name' => $this->input->post('customer_name'),
-                'contact_name' => $this->input->post('contact_name'), 
-                'state' => $this->input->post('state'),
+                'contact_name' => $this->input->post('contact_name'),
                 'address' => $this->input->post('address'),
                 'mobile' => $this->input->post('mobile'),
-                'mobile_alt' => $this->input->post('mobile_alt'), 
+                'mobile_alt' => $this->input->post('mobile_alt'),
                 'email' => $this->input->post('email'),
                 'remarks' => $this->input->post('remarks'),
-                'gst' => $this->input->post('gst'), 
+                'gst' => $this->input->post('gst'),
                 'status' => $this->input->post('status'),
                 'updated_by' => $this->session->userdata(SESS_HD . 'user_id'),
                 'updated_date' => date('Y-m-d H:i:s'),
@@ -1212,7 +1507,7 @@ if ($this->input->post('mode') == 'Edit') {
         $config['prev_link'] = "Prev";
         $config['next_link'] = "Next";
         $this->pagination->initialize($config);
-        
+
 
         $sql = "
             SELECT c.* 
@@ -1493,7 +1788,7 @@ if ($this->input->post('mode') == 'Edit') {
 
         if (!in_array($this->session->userdata(SESS_HD . 'user_type'), ['Admin', 'Staff'])) {
             echo "<h3 style='color:red;'>Permission Denied</h3>";
-           
+
         }
 
         $data['js'] = 'currency-list.inc';
@@ -1570,5 +1865,68 @@ if ($this->input->post('mode') == 'Edit') {
         $data['pagination'] = $this->pagination->create_links();
 
         $this->load->view('page/master/currency-list', $data);
+    }
+
+
+
+    public function ajax_add_master_inline()
+    {
+        // Set JSON header
+        header('Content-Type: application/json');
+
+        if ($this->input->post('mode') == 'Add Customer') {
+
+            // Basic validation
+            $customer_name = trim($this->input->post('customer_name'));
+            if (empty($customer_name)) {
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'Customer name is required!'
+                ]);
+                exit;
+            }
+
+            $data = [
+                'customer_name' => $customer_name,
+                'contact_name' => $this->input->post('contact_name'),
+                'crno' => $this->input->post('crno'),
+                'address' => $this->input->post('address'),
+                'mobile' => $this->input->post('mobile'),
+                'mobile_alt' => $this->input->post('mobile_alt'),
+                'email' => $this->input->post('email'),
+                'gst' => $this->input->post('gst'),
+                'remarks' => $this->input->post('remarks'),
+                'status' => $this->input->post('customer_status') ?: 'Active',
+                'created_by' => $this->session->userdata(SESS_HD . 'user_id'),
+                'created_date' => date('Y-m-d H:i:s'),
+                'updated_by' => $this->session->userdata(SESS_HD . 'user_id'),
+                'updated_date' => date('Y-m-d H:i:s')
+            ];
+
+            $this->db->insert('customer_info', $data);
+            $insert_id = $this->db->insert_id();
+
+            if ($insert_id) {
+                echo json_encode([
+                    'status' => 'success',
+                    'message' => 'Customer added successfully!',
+                    'id' => $insert_id,
+                    'name' => $customer_name
+                ]);
+            } else {
+                echo json_encode([
+                    'status' => 'error',
+                    'message' => 'Failed to insert customer. Please try again.'
+                ]);
+            }
+            exit;
+        }
+
+        // If mode doesn't match
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Invalid request'
+        ]);
+        exit;
     }
 }
