@@ -18,6 +18,7 @@
           $("#edit_modal #email").val(d.email);
           $("#edit_modal #crno").val(d.crno);
           $("#edit_modal #address").val(d.address);
+          $("#edit_modal #inv_design").val(d.inv_design);
           $("#edit_modal #company_code").val(d.company_code);
           $("#edit_modal #mobile").val(d.mobile);
           $("#edit_modal #GST").val(d.GST);
@@ -87,18 +88,13 @@
         reader.readAsDataURL(input.files[0]);
       }
     }
+    
   });
 </script>
 
 <script>
   $(document).ready(function () {
-    let total = parseInt("<?php echo $total_records; ?>");
-    $("#user_limet").text(total);
-    if (total === 0) {
-      $("#btn_add_new").show();
-    } else {
-      $("#btn_add_new").hide();
-    }
+ 
 
     // ✅ Initialize CKEditor with alignment, fonts, colors, tables, etc.
     $(function () {

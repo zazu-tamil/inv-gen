@@ -23,6 +23,7 @@
                         <th>Company Name</th>
                         <th>Mobile / Email</th>
                         <th>Address</th>
+                        <!-- <th>Invoice Design</th> -->
                         <th>Status</th>
                         <th colspan="2" class="text-center">Action</th>
                     </tr>
@@ -41,6 +42,7 @@
                                 <?php echo '<i class="fa fa-envelope"></i> ' . $ls['email'] ?>
                             </td>
                             <td><?php echo str_replace("\n", "<br>", $ls['address']); ?></td>
+                            <!-- <td><?php echo $ls['inv_design'] ?></td> -->
                             <td><?php echo $ls['status'] ?></td>
                             <td class="text-center">
                                 <button data-toggle="modal" data-target="#edit_modal"
@@ -60,7 +62,7 @@
 
             <!-- Add Modal -->
             <div class="modal fade" id="add_modal" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-md" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <form method="post" action="<?php echo site_url('company-list'); ?>" id="frmadd"
                             enctype="multipart/form-data">
@@ -85,7 +87,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-
                                     <div class="form-group col-md-6">
                                         <label>Mobile</label>
                                         <input class="form-control" type="text" name="mobile" id="mobile"
@@ -108,9 +109,19 @@
                                         <input class="form-control" type="text" name="GST" id="GST"
                                             placeholder="Enter your GST No" required="true">
                                     </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="inv_design">Invoice Design</label>
+                                        <select name="inv_design" id="inv_design" class="form-control">
+                                            <option value="">Select Invoice Design</option>
+                                            <option value="1">Invoice Desigh 1</option>
+                                            <option value="2">Invoice Desigh 2</option>
+                                            <option value="3">Invoice Desigh 3</option>
+                                            <option value="4">Invoice Desigh 4</option>
+                                            <option value="5">Invoice Desigh 5</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="row">    
-                                     
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="address">Address</label>
@@ -162,10 +173,21 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="row">
                                     <div class="form-group col-md-12">
+                                        <label for="logo_img">Company Logo</label>
+                                        <input class="form-control" type="file" name="logo_img" id="company_logo"
+                                            accept="image/*">
+                                        <div id="preview_logo" class="mt-2">
+                                            <img id="logo_img_preview" src="" alt="Logo Preview"
+                                                style="max-height:300px; display:none; border:1px solid #ccc; padding:5px;"
+                                                width="300px" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
                                         <label>Status</label>
                                         <div class="radio">
                                             <label>
@@ -242,9 +264,20 @@
                                         <input class="form-control" type="text" name="GST" id="GST"
                                             placeholder="Enter your GST No" required="true">
                                     </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="inv_design">Invoice Design</label>
+                                        <select name="inv_design" id="inv_design" class="form-control">
+                                            <option value="">Select Invoice Design</option>
+                                            <option value="1">Invoice Desigh 1</option>
+                                            <option value="2">Invoice Desigh 2</option>
+                                            <option value="3">Invoice Desigh 3</option>
+                                            <option value="4">Invoice Desigh 4</option>
+                                            <option value="5">Invoice Desigh 5</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="row">    
-                                     
+                                <div class="row">
+
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="address">Address</label>
@@ -274,7 +307,7 @@
                                                             <label>Quotation Terms</label>
                                                             <textarea id="editor1" name="quote_terms"
                                                                 class="form-control custom-textarea"
-                                                                placeholder="Enter quotation terms" required></textarea>
+                                                                placeholder="Enter quotation terms"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -288,7 +321,7 @@
                                                             <label>Invoice Terms</label>
                                                             <textarea id="editor2" name="invoice_terms"
                                                                 class="form-control custom-textarea"
-                                                                placeholder="Enter invoice terms" required></textarea>
+                                                                placeholder="Enter invoice terms"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -297,6 +330,18 @@
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                     <div class="form-group col-md-4">
+                                        <label for="logo_img">Company Logo</label>
+                                        <input class="form-control" type="file" name="logo_img" id="company_logo"
+                                            accept="image/*">
+                                        <div id="preview_logo" class="mt-2">
+                                            <img id="logo_img_preview" src="" alt="Logo Preview"
+                                                style="max-height:200px; display:none; border:1px solid #ccc; padding:5px;"
+                                                width="200px" />
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-12">

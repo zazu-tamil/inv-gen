@@ -110,6 +110,8 @@ $route['invoice-generate'] = 'master/invoice_generate';
 $route['invoice-list'] = 'master/invoice_list';
 $route['invoice-edit/(:num)'] = 'master/invoice_generate_edit/$1';
 
+$route['invoice-print/(:num)'] = 'invoice/invoice_generate_print/$1';
+
 $route['customer-list'] = 'master/customer_list';
 $route['customer-list/(:num)'] = 'master/customer_list/$1';
 $route['customer-contact-list'] = 'master/customer_contact_list';

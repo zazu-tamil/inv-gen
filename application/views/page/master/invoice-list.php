@@ -51,7 +51,7 @@
                         <th>Ref No</th>
                         <th>Invoice Amount</th>
                         <th>Status</th>
-                        <th class="text-center" colspan="2">Action</th>
+                        <th class="text-center" colspan="3">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,6 +65,12 @@
                             <td><?= $ls['your_ref_no'] ?></td>
                             <td><?= number_format($ls['total_amount'],2) ?></td>
                             <td><?php echo $ls['status']; ?></td>
+                            <td class="text-center">
+                                <a href="<?php echo site_url('invoice-print/' . $ls['invoice_id']); ?>"
+                                    class="btn btn-success btn-xs" title="Print">
+                                    <i class="fa fa-print"></i>
+                                </a>
+                            </td>
                             <td class="text-center">
                                 <a href="<?php echo site_url('invoice-edit/' . $ls['invoice_id']); ?>"
                                     class="btn btn-primary btn-xs" title="Edit">
