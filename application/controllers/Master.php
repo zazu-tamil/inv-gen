@@ -102,9 +102,9 @@ class Master extends CI_Controller
 
         // Banks
         $data['bank_opt'] = array();
-        $query = $this->db->query("SELECT bank_id, bank_name FROM company_bank_info WHERE status = 'Active' ORDER BY bank_name");
+        $query = $this->db->query("SELECT bank_id, bank_name,account_no FROM company_bank_info WHERE status = 'Active' ORDER BY bank_name");
         foreach ($query->result_array() as $row) {
-            $data['bank_opt'][$row['bank_id']] = $row['bank_name'];
+            $data['bank_opt'][$row['bank_id']] = $row['bank_name'] . ' (' . $row['account_no'] . ')';
         }
 
         $this->load->view('page/master/invoice-generate', $data);
