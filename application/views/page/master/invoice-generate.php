@@ -118,7 +118,7 @@
                 </fieldset>
 
                 <div class="box-footer text-right">
-                    <a href="<?php echo site_url('tender-enquiry-list'); ?>" class="btn btn-default"><i
+                    <a href="<?php echo site_url('invoice-list'); ?>" class="btn btn-default"><i
                             class="fa fa-arrow-left"></i> Back to Invoice List</a>
                     <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save Invoice</button>
                 </div>
