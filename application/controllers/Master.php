@@ -35,7 +35,7 @@ class Master extends CI_Controller
             $insert_data = array(
                 'company_id' => $srch_company_id,
                 'customer_id' => $srch_customer_id,
-                'invoice_no' => $this->input->post('invoice_no'),
+                //'invoice_no' => $this->input->post('invoice_no'),
                 'bank_id' => $this->input->post('bank_id'),
                 'your_ref_no' => $this->input->post('your_ref_no'),
                 'invoice_terms' => $this->input->post('invoice_terms'),
@@ -144,6 +144,7 @@ class Master extends CI_Controller
                 'your_ref_no' => $this->input->post('your_ref_no'),
                 'invoice_terms' => $this->input->post('invoice_terms'),
                 'invoice_date' => $this->input->post('invoice_date'),
+                'hike' => $this->input->post('hike'),
                 'status' => $this->input->post('status') ?: 'Active',
             );
 
@@ -237,13 +238,13 @@ class Master extends CI_Controller
         $sql = "
             SELECT  
                 a.invoice_id,
-                b.*
+                b.* 
             FROM invoice_info AS a
             LEFT JOIN invoice_item_info AS b ON a.invoice_id = b.invoice_id AND b.status = 'Active'
             LEFT JOIN company_info AS c ON a.company_id = c.company_id
             LEFT JOIN customer_info AS d ON a.customer_id = d.customer_id
             WHERE a.invoice_id = ? 
-            AND a.status = 'Active'
+            AND a.status = 'Active' 
             ORDER BY b.invoice_item_id ASC
         ";
 
@@ -352,7 +353,8 @@ class Master extends CI_Controller
                 a.invoice_id,
                 a.your_ref_no,
                 b.*,
-                e.bank_name
+                e.bank_name,
+                sum(b.amount) as total_amount
             FROM invoice_info as a
             LEFT JOIN invoice_item_info as b ON a.invoice_id = b.invoice_id AND b.status='Active'
             LEFT JOIN company_info as c ON a.company_id = c.company_id AND c.status='Active'
@@ -362,7 +364,7 @@ class Master extends CI_Controller
                 AND ( '" . $this->db->escape_str($srch_customer_id) . "' = '' OR a.customer_id = '" . $this->db->escape_str($srch_customer_id) . "' )
                 AND ( '" . $this->db->escape_str($srch_company_id) . "' = '' OR a.company_id = '" . $this->db->escape_str($srch_company_id) . "' )
             GROUP BY a.invoice_id
-            ORDER BY a.invoice_id DESC
+            ORDER BY a.invoice_date desc, a.invoice_id DESC
             LIMIT " . $this->uri->segment(2, 0) . "," . $config['per_page'] . "
         ";
 

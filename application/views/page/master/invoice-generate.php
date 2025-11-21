@@ -21,16 +21,16 @@
                 <fieldset class="tender-inward">
                     <legend class="text-light-blue"><i class="fa fa-file-text-o"></i> Invoice Details</legend>
                     <div class="row">
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label>Invoice Date <span class="text-danger">*</span></label>
                             <input type="date" name="invoice_date" class="form-control"
                                 value="<?php echo set_value('invoice_date', date('Y-m-d')); ?>" required>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label>Company <span class="text-danger">*</span></label>
                             <?php echo form_dropdown('company_id', ['' => 'Select Company'] + $company_opt, set_value('company_id'), 'id="srch_company_id" class="form-control select2" required'); ?>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label>Customer <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <?php echo form_dropdown('customer_id', ['' => 'Select Customer'] + $customer_opt, set_value('customer_id'), 'id="srch_customer_id" class="form-control" required'); ?>
@@ -40,22 +40,22 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="form-group col-md-3">
+                        <!-- <div class="form-group col-md-3">
                             <label>Invoice No <span class="text-danger">*</span></label>
                             <input type="text" name="invoice_no" class="form-control" value="" required
                                 placeholder="Enter your no">
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-3">
-                            <label for="your_ref_no">Ref No <span class="text-danger">*</span></label>
+                            <label for="your_ref_no">Ref No </label>
                             <input type="text" name="your_ref_no" id="your_ref_no" class="form-control" value=""
-                                required placeholder="Enter your no">
+                                placeholder="Enter your Ref no">
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label>Bank</label>
                             <?php echo form_dropdown('bank_id', ['' => 'Select Bank'] + $bank_opt, set_value('bank_id'), 'class="form-control select2"'); ?>
                         </div>
                         <div class="form-group col-md-3">
-                            <label>Status</label> 
+                            <label>Status</label>
                             <div class="radio">
                                 <label><input type="radio" name="status" value="Active" checked> Active</label>
                                 &nbsp;&nbsp;&nbsp;
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <label>Invoice Terms</label>
+                            <label>Terms & Conditions</label>
                             <textarea name="invoice_terms" id="invoice_terms" class="form-control" rows="2"
                                 placeholder="Enter your terms"></textarea>
                         </div>
@@ -78,25 +78,28 @@
                         <table class="table table-bordered table-striped" id="item_table">
                             <thead>
                                 <tr>
-                                    <th style="width: 20%">Item Description</th>
-                                    <th>HSN Code</th>
-                                    <th>UOM</th>
-                                    <th>Qty</th>
+                                    <th style="width: 20%">Item & HSN Code</th> 
+                                    <th>UOM & Qty</th> 
                                     <th>Rate</th>
                                     <th>GST %</th>
                                     <th>Amount</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="item_rows">
-                                <!-- Only ONE default row -->
+                            <tbody id="item_rows"> 
                                 <tr class="item-row">
-                                    <td><textarea name="item_desc[]" rows="2" class="form-control"
-                                            placeholder="Enter item description"></textarea></td>
-                                    <td><input type="text" name="hsn_code[]" class="form-control"></td>
-                                    <td><input type="text" name="uom[]" class="form-control"></td>
-                                    <td><input type="number" step="0.01" name="qty[]" class="form-control qty"
-                                            value="1"></td>
+                                    <td> 
+                                            <input type="text" name="item_desc[]" class="form-control mt-2"  placeholder="Enter Item Name">
+                                            <br>
+                                            <input type="text" name="hsn_code[]" class="form-control" placeholder="Enter HSN Code">
+                                    </td>
+                                    <!-- <td><input type="text" name="hsn_code[]" class="form-control"></td> -->
+                                    <td>
+                                        <input type="text" name="uom[]" class="form-control" placeholder="Enter UOM">
+                                        <br>
+                                        <input type="number" step="any" name="qty[]" class="form-control qty" placeholder="Enter Qty" value="1">
+                                    </td>
+                                    <!-- <td></td> -->
                                     <td><input type="number" step="0.01" name="rate[]" class="form-control rate"
                                             value="0.00"></td>
                                     <td><input type="number" step="0.01" name="gst[]" class="form-control gst"
@@ -116,7 +119,7 @@
 
                 <div class="box-footer text-right">
                     <a href="<?php echo site_url('tender-enquiry-list'); ?>" class="btn btn-default"><i
-                            class="fa fa-arrow-left"></i> Back</a>
+                            class="fa fa-arrow-left"></i> Back to Invoice List</a>
                     <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save Invoice</button>
                 </div>
             </div>

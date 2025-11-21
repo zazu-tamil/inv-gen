@@ -42,11 +42,28 @@ jQuery(function($) {
 
     // Add More Item Row - ONLY ONE ROW WILL BE ADDED AT A TIME
     $('#add_more').click(function() {
-        var row = `<tr class="item-row">
+        /*var row = `<tr class="item-row">
             <td><textarea name="item_desc[]" rows="2" class="form-control" placeholder="Enter item description"></textarea></td>
             <td><input type="text" name="hsn_code[]" class="form-control"></td>
             <td><input type="text" name="uom[]" class="form-control"></td>
             <td><input type="number" step="0.01" name="qty[]" class="form-control qty" value="1"></td>
+            <td><input type="number" step="0.01" name="rate[]" class="form-control rate" value="0.00"></td>
+            <td><input type="number" step="0.01" name="gst[]" class="form-control gst" value="0"></td>
+            <td><input type="text" name="amount[]" class="form-control amount" readonly></td>
+            <td class="text-center"><button type="button" class="btn btn-danger btn-sm remove_row"><i class="fa fa-trash"></i></button></td>
+        </tr>`;*/
+
+         var row = `<tr class="item-row">
+            <td> 
+                <input type="text" name="item_desc[]" class="form-control mt-2"  placeholder="Enter Item Name">
+                <br>
+                <input type="text" name="hsn_code[]" class="form-control" placeholder="Enter HSN Code">
+            </td> 
+            <td>
+                <input type="text" name="uom[]" class="form-control" placeholder="Enter UOM">
+                <br>
+                <input type="number" step="any" name="qty[]" class="form-control qty" placeholder="Enter Qty" value="1">
+            </td> 
             <td><input type="number" step="0.01" name="rate[]" class="form-control rate" value="0.00"></td>
             <td><input type="number" step="0.01" name="gst[]" class="form-control gst" value="0"></td>
             <td><input type="text" name="amount[]" class="form-control amount" readonly></td>
@@ -65,9 +82,15 @@ jQuery(function($) {
         }
     });
 
-    // Auto Calculate Amount for each row
+   // Auto Calculate Amount for each row
     $(document).on('input', '.qty, .rate, .gst', function() {
         var row = $(this).closest('tr');
+        calculateRowAmount(row);
+        calculateTotal(); // Update grand total
+    });
+
+    // Function to calculate one row
+    function calculateRowAmount(row) {
         var qty = parseFloat(row.find('.qty').val()) || 0;
         var rate = parseFloat(row.find('.rate').val()) || 0;
         var gst = parseFloat(row.find('.gst').val()) || 0;
@@ -77,36 +100,55 @@ jQuery(function($) {
         var total = amount + gst_amount;
 
         row.find('.amount').val(total.toFixed(2));
-        
-        calculateTotal(); // Update grand total if you have one
-    });
+    }
 
-    // Optional: Calculate Grand Total (if you want to show total of all rows)
+    // Optional: Calculate Grand Total
     function calculateTotal() {
         var grandTotal = 0;
         $('.amount').each(function() {
             grandTotal += parseFloat($(this).val()) || 0;
         });
-        // If you have a grand total field, update it here
-        // $('#grand_total').val(grandTotal.toFixed(2));
+
+        // $('#grand_total').val(grandTotal.toFixed(2)); // If you have it
     }
 
-    // Calculate amount for first row on page load if values exist
-    $(document).ready(function() {
-        $('.item-row').each(function() {
-            var row = $(this);
-            var qty = parseFloat(row.find('.qty').val()) || 0;
-            var rate = parseFloat(row.find('.rate').val()) || 0;
-            var gst = parseFloat(row.find('.gst').val()) || 0;
-
-            if (qty > 0 || rate > 0) {
-                var amount = qty * rate;
-                var gst_amount = amount * (gst / 100);
-                var total = amount + gst_amount;
-                row.find('.amount').val(total.toFixed(2));
-            }
-        });
+    // Calculate amount for first row on page load
+    $('.item-row').each(function() {
+        calculateRowAmount($(this));
     });
+
+
+    // ------------------------------------------------------
+    // ★ NEW CODE: Apply HIKE % to all item RATE fields
+    // ------------------------------------------------------
+    $("#hike").on("input change", function () {
+        var hike = parseFloat($(this).val()) || 0;
+
+        $("#item_rows .item-row").each(function () {
+            var row = $(this);
+
+            // Store original rate only once
+            var rateInput = row.find(".rate");
+            var originalRate = rateInput.data("original");
+
+            if (originalRate === undefined) {
+                originalRate = parseFloat(rateInput.val()) || 0;
+                rateInput.data("original", originalRate);
+            }
+
+            // Apply hike
+            var newRate = originalRate + (originalRate * hike / 100);
+            rateInput.val(newRate.toFixed(2));
+
+            // Recalculate the amount
+            calculateRowAmount(row);
+        });
+
+        calculateTotal();
+    });
+
+
+
 });
 </script>
 

@@ -4,7 +4,7 @@
 // echo '</pre>';
 ?>
 <section class="content-header">
-    <h1>Items List</h1>
+    <h1>Invoice List</h1>
 </section>
 <section class="content">
     <div class="box box-info no-print">
@@ -45,11 +45,11 @@
                     <tr>
                         <th class="text-center">S.No</th>
                         <th>Invoice Date</th>
-                        <th>Company Name</th>
-                        <th>Customer Name</th>
+                        <th>Company</th>
+                        <th>Customer</th>
                         <th>Invoice No</th>
                         <th>Ref No</th>
-                        <th>Bank Name</th>
+                        <th>Invoice Amount</th>
                         <th>Status</th>
                         <th class="text-center" colspan="2">Action</th>
                     </tr>
@@ -58,12 +58,12 @@
                     <?php foreach ($record_list as $j => $ls) { ?>
                         <tr>
                             <td class="text-center"><?= ($j + 1) ?></td>
-                            <td><?= $ls['invoice_date'] ?></td>
+                            <td><?= date('d-m-Y',strtotime($ls['invoice_date'])) ?></td>
                             <td><?= $ls['company_name'] ?></td>
                             <td><?= $ls['customer_name'] ?></td>
                             <td><?= $ls['invoice_no'] ?></td>
                             <td><?= $ls['your_ref_no'] ?></td>
-                            <td><?= $ls['bank_name'] ?></td>
+                            <td><?= number_format($ls['total_amount'],2) ?></td>
                             <td><?php echo $ls['status']; ?></td>
                             <td class="text-center">
                                 <a href="<?php echo site_url('invoice-edit/' . $ls['invoice_id']); ?>"
