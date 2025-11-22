@@ -166,17 +166,19 @@ class Master extends CI_Controller
 
             if (!empty($item_descs) && is_array($item_descs)) {
                 foreach ($item_descs as $index => $item_desc) {
+
                     if (!empty(trim($item_desc))) {
+
                         $insert_item_data = array(
                             'invoice_id' => $invoice_id,
-                            'item_desc' => trim($item_descs[$index] ?? ''),
-                            'hsn_code' => trim($hsn_codes[$index] ?? ''),
-                            'uom' => trim($uoms[$index] ?? ''),
-                            'gst' => $gst[$index] ?? 0,
-                            'qty' => $qtys[$index] ?? 0,
-                            'rate' => $rates[$index] ?? 0.00,
-                            'amount' => $amounts[$index] ?? 0.00,
-                            'status' => 'Active'
+                            'item_desc' => $this->db->escape_str(trim($item_descs[$index] ?? '')),
+                            'hsn_code'  => $this->db->escape_str(trim($hsn_codes[$index] ?? '')),
+                            'uom'       => $this->db->escape_str(trim($uoms[$index] ?? '')),
+                            'gst'       => $gst[$index] ?? 0,
+                            'qty'       => $qtys[$index] ?? 0,
+                            'rate'      => $rates[$index] ?? 0.00,
+                            'amount'    => $amounts[$index] ?? 0.00,
+                            'status'    => 'Active'
                         );
 
                         $this->db->insert('invoice_item_info', $insert_item_data);
