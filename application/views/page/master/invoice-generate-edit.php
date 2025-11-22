@@ -189,8 +189,8 @@
                                                         <!-- <td></td> -->
                                                         <td><input type="number" step="0.01" name="rate[]" class="form-control rate"
                                                                 value="<?php echo $item['rate']; ?>" required></td>
-                                                        <td><input type="number" step="0.01" name="gst[]" class="form-control gst"
-                                                                value="0" required></td>
+                                                        <td><input type="number" step="any" name="gst[]" class="form-control gst"
+                                                                value="<?php echo $item['gst']; ?>" required></td>
                                                         <td><input type="text" name="amount[]" class="form-control amount" readonly required value="<?php echo $item['amount']; ?>"></td>
                                                         <td class="text-center">
                                                             <button type="button" class="btn btn-danger btn-sm remove_row"><i

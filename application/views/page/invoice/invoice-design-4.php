@@ -117,7 +117,8 @@
             <table class="invm-meta" width="100%" style="margin-bottom:7px">
                 <tr>
 
-                    <td colspan="2"><b>Bill To:</b> <?= html_escape($record['customer_name']) ?>
+                    <td colspan="2"><b>Bill To:</b> 
+                        <br><b><?= html_escape($record['customer_name']) ?></b>
                         <br><?= nl2br(html_escape($record['customer_address'])) ?>
                     </td>
                     <td>
