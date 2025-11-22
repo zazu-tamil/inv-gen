@@ -88,7 +88,7 @@
                     <td colspan="2"><b>Invoice To :</b> <?= html_escape($record['customer_name']) ?> <br>
                     <p style="height:3px;"></p>
                         <?= nl2br(html_escape($record['customer_address'])) ?> |
-                        GST No: <?= html_escape($record['GST'] ?? 'Unregistered') ?>
+                        GST No: <?= html_escape($record['GST'] ?? '') ?>
                     </td>
                     <td></td>
                 </tr>

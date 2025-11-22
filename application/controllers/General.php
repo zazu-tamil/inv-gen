@@ -65,6 +65,21 @@ class General extends CI_Controller
             }
 
         }
+        if ($table == 'company_bank_info') {
+            $query = $this->db->query(" 
+                select 
+                a.* 
+                from company_bank_info as a  
+                where a.bank_id = '" . $rec_id . "'
+            ");
+
+            $rec_list = array();
+
+            foreach ($query->result_array() as $row) {
+                $rec_list = $row;
+            }
+
+        }
         if ($table == 'get-account-head-type') {
             $query = $this->db->query(" 
                 select 
@@ -314,6 +329,11 @@ class General extends CI_Controller
         $rec_id = $this->input->post('id');
 
 
+        if ($table == 'company_bank_info') {
+            $this->db->where('bank_id', $rec_id);
+            $this->db->update('company_bank_info', array('status' => 'Delete'));
+            echo "Record Deleted Successfully";
+        }
         if ($table == 'invoice_info') {
             $this->db->where('invoice_id', $rec_id);
             $this->db->update('invoice_info', array('status' => 'Delete'));

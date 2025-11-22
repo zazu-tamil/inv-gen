@@ -174,39 +174,29 @@
                                             <tbody id="item_rows">
                                                 <?php if (!empty($item_rows) && isset($item_rows[0]['invoice_item_id'])): ?>
                                                 <?php foreach ($item_rows as $item): ?>
-                                                <tr class="item-row">
-                                                    <td>
-                                                        <input type="text" name="item_desc[]" class="form-control"
-                                                            required="true"
-                                                            value="<?php echo htmlspecialchars($item['item_desc']); ?>">
-                                                        <label for="">HSN</label>
-                                                        <input type="text" name="hsn_code[]" class="form-control"
-                                                            value="<?php echo $item['hsn_code']; ?>" required>
-
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="uom[]" class="form-control" value="<?php echo $item['uom']; ?>"> 
-                                                          <label for="">QTY</label>
-                                                         <input type="number" step="0.01" name="qty[]" class="form-control qty text-right" value="<?php echo $item['qty']; ?>" min="1" required>
-                                                    </td>
-                                                    <td><input type="number" step="0.01" name="rate[]"
-                                                            class="form-control rate text-right"
-                                                            value="<?php echo $item['rate']; ?>" min="0" required></td>
-                                                    <td><input type="number" step="0.01" name="gst[]"
-                                                            class="form-control gst text-right"
-                                                            value="<?php echo $item['gst']; ?>" min="0"></td>
-                                                    <td>
-                                                        <input type="text" name="amount[]"
-                                                            class="form-control amount text-right" readonly
-                                                            value="<?php echo number_format($item['amount'], 2); ?>">
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-danger btn-sm remove_row"
-                                                            title="Remove">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                    <tr class="item-row">
+                                                        <td> 
+                                                                <input type="text" name="item_desc[]" class="form-control mt-2"  placeholder="Enter Item Name" required value="<?php echo $item['item_desc']; ?>">
+                                                                <br>
+                                                                <input type="text" name="hsn_code[]" class="form-control" placeholder="Enter HSN Code" required value="<?php echo $item['hsn_code']; ?>">
+                                                        </td>
+                                                        <!-- <td><input type="text" name="hsn_code[]" class="form-control"></td> -->
+                                                        <td>
+                                                            <input type="text" name="uom[]" class="form-control" placeholder="Enter UOM" required value="<?php echo $item['uom']; ?>">
+                                                            <br>
+                                                            <input type="number" step="any" name="qty[]" class="form-control qty" placeholder="Enter Qty" value="<?php echo $item['qty']; ?>">
+                                                        </td>
+                                                        <!-- <td></td> -->
+                                                        <td><input type="number" step="0.01" name="rate[]" class="form-control rate"
+                                                                value="<?php echo $item['rate']; ?>" required></td>
+                                                        <td><input type="number" step="any" name="gst[]" class="form-control gst"
+                                                                value="<?php echo $item['gst']; ?>" required></td>
+                                                        <td><input type="text" name="amount[]" class="form-control amount" readonly required value="<?php echo $item['amount']; ?>"></td>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-danger btn-sm remove_row"><i
+                                                                    class="fa fa-trash"></i></button>
+                                                        </td>
+                                                    </tr>
                                                 <?php endforeach; ?>
                                                 <?php else: ?>
                                                 <tr class="item-row">

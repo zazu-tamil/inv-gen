@@ -187,27 +187,27 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 mb-3">
                                         <label>Company <span style="color:red;">*</span></label>
-                                        <?php echo form_dropdown('company', $company_opt, set_value('company'), 'id="company_edit" class="form-control" required'); ?>
+                                        <?php echo form_dropdown('company', $company_opt, set_value('company'), 'id="company" class="form-control" required'); ?>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
                                         <label>Bank Name <span style="color:red;">*</span></label>
-                                        <input class="form-control" type="text" name="bank_name" id="bank_name_edit" required>
+                                        <input class="form-control" type="text" name="bank_name" id="bank_name" required>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
                                         <label>Branch <span style="color:red;">*</span></label>
-                                        <input class="form-control" type="text" name="branch" id="branch_edit" required>
+                                        <input class="form-control" type="text" name="branch" id="branch" required>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
                                         <label>Account Type <span style="color:red;">*</span></label>
-                                        <?php echo form_dropdown('account_type', $account_types, set_value('account_type'), 'id="account_type_edit" class="form-control" required'); ?>
+                                        <?php echo form_dropdown('account_type', $account_types, set_value('account_type'), 'id="account_type" class="form-control" required'); ?>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
                                         <label>Account Number <span style="color:red;">*</span></label>
-                                        <input class="form-control" type="text" name="account_no" id="account_no_edit" required>
+                                        <input class="form-control" type="text" name="account_no" id="account_no" required>
                                     </div>
                                     <div class="form-group col-md-6 mb-3">
                                         <label>IFSC Code <span style="color:red;">*</span></label>
-                                        <input class="form-control" type="text" name="IFSC_code" id="IFSC_code_edit" required>
+                                        <input class="form-control" type="text" name="IFSC_code" id="IFSC_code" required>
                                     </div>
 
                                     
@@ -224,7 +224,7 @@
 
                                     <div class="form-group col-md-12 mb-3">
                                         <label>Remarks</label>
-                                        <textarea class="form-control" name="remarks" id="remarks_edit"></textarea>
+                                        <textarea class="form-control" name="remarks" id="remarks"></textarea>
                                     </div>
 
                                       
