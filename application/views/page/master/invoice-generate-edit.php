@@ -77,9 +77,9 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Customer <span class="text-red">*</span></label>
+                                                <label>Customer</label>
                                                 <div class="input-group">
-                                                    <?php echo form_dropdown('customer_id', $customer_opt, set_value('customer_id', $main['customer_id']), 'id="srch_customer_id" class="form-control select2" style="width: 100%;" required'); ?>
+                                                    <?php echo form_dropdown('customer_id', $customer_opt, set_value('customer_id', $main['customer_id']), 'id="srch_customer_id" class="form-control select2" style="width: 100%;"'); ?>
                                                     <span class="input-group-btn">
                                                         <button type="button" class="btn btn-info btn-flat"
                                                             data-toggle="modal" data-target="#add_customer">
@@ -177,11 +177,11 @@
                                                 <tr class="item-row">
                                                     <td>
                                                         <input type="text" name="item_desc[]" class="form-control"
-                                                            required
+                                                            required="true"
                                                             value="<?php echo htmlspecialchars($item['item_desc']); ?>">
                                                         <label for="">HSN</label>
                                                         <input type="text" name="hsn_code[]" class="form-control"
-                                                            value="<?php echo $item['hsn_code']; ?>">
+                                                            value="<?php echo $item['hsn_code']; ?>" required>
 
                                                     </td>
                                                     <td>

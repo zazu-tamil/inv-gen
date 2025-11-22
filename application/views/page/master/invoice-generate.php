@@ -31,9 +31,9 @@
                             <?php echo form_dropdown('company_id', ['' => 'Select Company'] + $company_opt, set_value('company_id'), 'id="srch_company_id" class="form-control select2" required'); ?>
                         </div>
                         <div class="form-group col-md-4">
-                            <label>Customer <span class="text-danger">*</span></label>
+                            <label>Customer</label>
                             <div class="input-group">
-                                <?php echo form_dropdown('customer_id', ['' => 'Select Customer'] + $customer_opt, set_value('customer_id'), 'id="srch_customer_id" class="form-control" required'); ?>
+                                <?php echo form_dropdown('customer_id', ['' => 'Select Customer'] + $customer_opt, set_value('customer_id'), 'id="srch_customer_id" class="form-control"'); ?>
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-info" data-toggle="modal"
                                         data-target="#add_customer">Add New</button>
@@ -89,22 +89,22 @@
                             <tbody id="item_rows"> 
                                 <tr class="item-row">
                                     <td> 
-                                            <input type="text" name="item_desc[]" class="form-control mt-2"  placeholder="Enter Item Name">
+                                            <input type="text" name="item_desc[]" class="form-control mt-2"  placeholder="Enter Item Name" required>
                                             <br>
-                                            <input type="text" name="hsn_code[]" class="form-control" placeholder="Enter HSN Code">
+                                            <input type="text" name="hsn_code[]" class="form-control" placeholder="Enter HSN Code" required>
                                     </td>
                                     <!-- <td><input type="text" name="hsn_code[]" class="form-control"></td> -->
                                     <td>
-                                        <input type="text" name="uom[]" class="form-control" placeholder="Enter UOM">
+                                        <input type="text" name="uom[]" class="form-control" placeholder="Enter UOM" required>
                                         <br>
                                         <input type="number" step="any" name="qty[]" class="form-control qty" placeholder="Enter Qty" value="1">
                                     </td>
                                     <!-- <td></td> -->
                                     <td><input type="number" step="0.01" name="rate[]" class="form-control rate"
-                                            value="0.00"></td>
+                                            value="0.00" required></td>
                                     <td><input type="number" step="0.01" name="gst[]" class="form-control gst"
-                                            value="0"></td>
-                                    <td><input type="text" name="amount[]" class="form-control amount" readonly></td>
+                                            value="0" required></td>
+                                    <td><input type="text" name="amount[]" class="form-control amount" readonly required></td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-danger btn-sm remove_row"><i
                                                 class="fa fa-trash"></i></button>

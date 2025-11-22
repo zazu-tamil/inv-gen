@@ -90,12 +90,12 @@
                                     <div class="form-group col-md-6">
                                         <label>Mobile</label>
                                         <input class="form-control" type="text" name="mobile" id="mobile"
-                                            placeholder="Enter your Mobile" required="true">
+                                            placeholder="Enter your Mobile">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Email</label>
                                         <input class="form-control" type="email" name="email" id="email" value=""
-                                            placeholder="Email ID" required="true">
+                                            placeholder="Email ID">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -129,63 +129,7 @@
                                                 placeholder="Address" required="true" rows="4"></textarea>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="nav-tabs-custom">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active">
-                                                <a href="#tab_1" data-toggle="tab">Terms & Conditions Quotation</a>
-                                            </li>
-                                            <li>
-                                                <a href="#tab_2" data-toggle="tab">Terms & Conditions Invoice</a>
-                                            </li>
-                                        </ul>
-
-                                        <div class="tab-content">
-                                            <!-- Tab 1 -->
-                                            <div class="tab-pane active" id="tab_1">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Quotation Terms</label>
-                                                            <textarea id="editor1" name="quote_terms"
-                                                                class="form-control custom-textarea"
-                                                                placeholder="Enter quotation terms" required></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Tab 2 -->
-                                            <div class="tab-pane" id="tab_2">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Invoice Terms</label>
-                                                            <textarea id="editor2" name="invoice_terms"
-                                                                class="form-control custom-textarea"
-                                                                placeholder="Enter invoice terms" required></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="logo_img">Company Logo</label>
-                                        <input class="form-control" type="file" name="logo_img" id="company_logo"
-                                            accept="image/*">
-                                        <div id="preview_logo" class="mt-2">
-                                            <img id="logo_img_preview" src="" alt="Logo Preview"
-                                                style="max-height:300px; display:none; border:1px solid #ccc; padding:5px;"
-                                                width="300px" />
-                                        </div>
-                                    </div>
-                                </div>
-
+                                </div> 
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label>Status</label>
@@ -245,19 +189,19 @@
                                     <div class="form-group col-md-6">
                                         <label>Mobile</label>
                                         <input class="form-control" type="text" name="mobile" id="mobile"
-                                            placeholder="Enter your Mobile" required="true">
+                                            placeholder="Enter your Mobile">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Email</label>
                                         <input class="form-control" type="email" name="email" id="email" value=""
-                                            placeholder="Email ID" required="true">
+                                            placeholder="Email ID">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label>State</label>
                                         <input class="form-control" type="text" name="state" id="state"
-                                            placeholder="Enter State" value="Tamil Nadu">
+                                            placeholder="Enter State" value="Tamil Nadu" required="true">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>GST No</label>
@@ -285,63 +229,7 @@
                                                 placeholder="Address" required="true" rows="4"></textarea>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="nav-tabs-custom">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active">
-                                                <a href="#tab_1" data-toggle="tab">Terms & Conditions Quotation</a>
-                                            </li>
-                                            <li>
-                                                <a href="#tab_2" data-toggle="tab">Terms & Conditions Invoice</a>
-                                            </li>
-                                        </ul>
-
-                                        <div class="tab-content">
-                                            <!-- Tab 1 -->
-                                            <div class="tab-pane active" id="tab_1">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Quotation Terms</label>
-                                                            <textarea id="editor1" name="quote_terms"
-                                                                class="form-control custom-textarea"
-                                                                placeholder="Enter quotation terms"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Tab 2 -->
-                                            <div class="tab-pane" id="tab_2">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Invoice Terms</label>
-                                                            <textarea id="editor2" name="invoice_terms"
-                                                                class="form-control custom-textarea"
-                                                                placeholder="Enter invoice terms"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                     <div class="form-group col-md-4">
-                                        <label for="logo_img">Company Logo</label>
-                                        <input class="form-control" type="file" name="logo_img" id="company_logo"
-                                            accept="image/*">
-                                        <div id="preview_logo" class="mt-2">
-                                            <img id="logo_img_preview" src="" alt="Logo Preview"
-                                                style="max-height:200px; display:none; border:1px solid #ccc; padding:5px;"
-                                                width="200px" />
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> 
 
                                 <div class="row">
                                     <div class="form-group col-md-12">

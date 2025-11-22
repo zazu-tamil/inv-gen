@@ -18,26 +18,7 @@ class Invoice extends MY_Controller
         $data['js'] = 'invoice/invoice-desing.inc';
         $this->load->view('page/invoice/invoice-desing', $data);
     }
-    // public function invoice_generate_print()
-    // {
-
-    //     $data = array();
-    //     $data['js'] = 'invoice/invoice-desing.inc';
-    //     $data['title'] = 'Invoice';
-
-
-    //     $sql = "
-    //             SELECT * FROM company_info          
-    //     ";
-    //     $query = $this->db->query($sql, []);
-    //     $data['record'] = $query->row_array();
-
-
-
-
-    //     $this->load->view('page/invoice/invoice-desing', $data);
-    // }
-
+    
     public function invoice_generate_print($invoice_id = 0)
     {
         if (!$this->session->userdata(SESS_HD . 'logged_in')) {
@@ -130,7 +111,7 @@ class Invoice extends MY_Controller
         $data['total_gross_amount'] = $total_gross_amount;
         $data['gst_amount'] = $gst_amount;
 
-        $this->load->view('page/invoice/invoice-desing', $data);
+        $this->load->view('page/invoice/invoice-design-list', $data);
     }
 
 }
