@@ -121,8 +121,8 @@
                     $taxable_total += $item['amount']; ?>
                     <tr>
                         <td align="center"><?= $sno++ ?></td>
-                        <td><?= html_escape($item['item_desc']) ?></td>
-                        <td align="center"><?= html_escape($item['hsn_code']) ?></td>
+                <td><?php echo stripcslashes(htmlspecialchars($item['item_desc'])); ?></td>
+                <td><?php echo stripcslashes(htmlspecialchars($item['hsn_code'])); ?></td>
                         <td align="center"><?= number_format($item['qty'], 2) ?></td>
                         <td align="center"><?= html_escape($item['uom']) ?></td>
                         <td align="right"><?= number_format($item['rate'], 2) ?></td>

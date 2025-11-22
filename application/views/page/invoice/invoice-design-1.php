@@ -54,6 +54,8 @@
 
             .brlft {
                 border: 1px solid #cccc;
+                text-align: center;
+                /* vertical-align: middle;   */
             }
 
             .nobr {
@@ -89,39 +91,34 @@
                 <tr>
                     <td colspan="2" class="topbot" style="font-size:14px;padding-left:10px;">
                         <b>GST & PAN : <?= html_escape($record['GST']) ?></b>
-                    </td>
-                    <td align="right" style="font-size:24px;padding-right:25px;" class="topbot"><b>&nbsp;</b></td>
+                    </td> 
+                    <td align="right" style="font-size:24px;padding-right:25px; " class="topbot"><b>&nbsp;</b></td>
                 </tr>
                 <tr>
-                    <td style="padding-left:25px;border-right:1px solid #cccc;" class="tot" width="60%" colspan="2">
-                        <table border=0 width="100%">
+                    <td style="padding-left:0px;border-right:1px solid #cccc; " class="tot" width="60%" colspan="2">
+                        <table border=0 width="100%" >
                             <tr>
-                                <td width="50%">
-                                    <strong>Bill To </strong><br>
+                                <td width="50%" style="padding-left:10px">
+                                   <strong >Customer </strong> <br>
                                     <?= nl2br(html_escape($record['customer_name'])) ?>
                                     <br>
-                                    <!-- <?= nl2br(html_escape($record['customer_address'])) ?> -->
+                               <?= nl2br(html_escape($record['customer_address']))  ?> 
                                 </td>
-                                <td valign="top">
-                                    <strong>Registered Address,</strong><br>
-                                    <?= nl2br(html_escape($record['customer_name'])) ?><br>
-                                    <?= nl2br(html_escape($record['customer_address'])) ?>
-                                    <!-- Add separate GSTIN field in DB if needed -->
-                                </td>
+                              
                             </tr>
                         </table>
                     </td>
-                    <td style="font-weight:bold;padding-left:5px;" class="tot">
+                    <td style="font-weight:bold;padding-left:10px;" class="tot">
                         <table border=0>
                             <tr>
                                 <td>Invoice No</td>
                                 <td>:</td>
-                                <td><?= html_escape($record['invoice_no']) ?></td>
+                                <td style="font-weight: normal;"><?= html_escape($record['invoice_no']) ?></td>
                             </tr>
                             <tr>
                                 <td>Date</td>
-                                <td>:</td>
-                                <td><?= html_escape($record['invoice_date']) ?></td>
+                                <td>:</td> 
+                                <td style="font-weight: normal;"><?= html_escape($record['invoice_date']) ?></td>
                             </tr>
                         </table>
                     </td>
@@ -129,17 +126,22 @@
             </thead>
 
             <tr>
-                <td colspan="3" align="center" style="padding:0px;border:0px;">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="1" class="itm_tbl">
-                        <thead>
+                <td colspan="3" align="center" style="padding:0px;" >
+
+
+                    <table style="text-align: center;" width="100%" border="0" cellspacing="0" cellpadding="1" class="itm_tbl">
+                        <thead  ">
                             <tr>
-                                <th width="2%">S.No</th>
-                                <th width="55%" class="brlft">Item Name</th>
-                                <th width="8%" class="brlft">HSN</th>
-                                <th width="5%" class="brlft">UOM</th>
-                                <th width="5%" class="brlft">Qty</th>
-                                <th width="15%" class="brlft">Rate</th>
-                                <th width="15%" class="brlft">Amount</th>
+                              
+
+                                  <th width="4%;" style="background:#faf3e0; padding:10px;">S.No</th>
+                                <th width="34%" class="brlft" style="background:#faf3e0; padding:10px;">Item Name</th>
+                                <th width="10%" class="brlft" style="background:#faf3e0; padding:10px;">HSN</th>
+                                <th width="8%" class="brlft" style="background:#faf3e0; padding:10px;">UOM</th>
+                                <th width="8%" class="brlft" style="background:#faf3e0; padding:10px;"> Qty</th>
+                                <th width="12%" class="brlft" style="background:#faf3e0; padding:10px;">Rate</th>
+                                <th width="12%" class="brlft" style="background:#faf3e0; padding:10px;">Amount</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -147,11 +149,18 @@
                             $sno = 1;
                             foreach ($items as $item): ?>
                                 <tr>
-                                    <td align="center" valign="top"><?= $sno++ ?></td>
-                                    <td align="left" class="brlft" style="padding-left:10px;">
-                                        <strong></strong><br><?= html_escape($item['item_desc']) ?>
-                                    </td>
-                                    <td align="center" classگان="brlft"><?= html_escape($item['hsn_code']) ?></td>
+
+
+                                
+                                    <td > <?= $sno++ ?>  </td>
+
+                                    <td style="border:1px solid #cccc; padding:5px"> 
+                                        <?php echo stripcslashes(htmlspecialchars($item['item_desc'])); ?>
+                                   
+                                </td>
+                                    <td align="center" classگان="brlft"><?php echo stripcslashes(htmlspecialchars($item['hsn_code'])); ?></td>
+
+                                    
                                     <td align="center" class="brlft"><?= html_escape($item['uom']) ?></td>
                                     <td align="center" class="brlft"><?= number_format($item['qty'], 2) ?></td>
                                     <td align="right" class="brlft" style="padding-right:10px;">
@@ -166,7 +175,7 @@
 
 
                             <tr>
-                                <td align="right" colspan="6" style="border-top:1px solid #cccc;"><strong>GROSS TOTAL
+                                <td align="right" colspan="6" style="border-top:1px solid #cccc; padding:5px"><strong>GROSS TOTAL
                                         :</strong></td>
                                 <td align="right" class="brlft tot" style="padding-right:10px;border-top:1px solid #cccc;">
                                     <b><?= number_format($total_gross_amount, 2) ?></b>
@@ -180,7 +189,7 @@
                                     $sgst = ($gst_amount / 2);
 
                                     ?>
-                                    <td align="right" colspan="6" style="border-top:1px solid #cccc;">
+                                    <td align="right" colspan="6" style="border-top:1px solid #cccc; padding:5px">
                                         <strong>CGST : <?= number_format($item['gst']) ?>%</strong>
                                     </td>
                                     <td align="right" class="brlft tot" style="padding-right:10px;border-top:1px solid #cccc;">
@@ -190,7 +199,7 @@
 
 
                                 <tr>
-                                    <td align="right" colspan="6" style="border-top:1px solid #cccc;"><strong>SGST
+                                    <td align="right" colspan="6" style="border-top:1px solid #cccc; padding:5px"><strong>SGST
                                             :<?= number_format($item['gst']) ?>%</strong></td>
                                     <td align="right" class="brlft tot" style="padding-right:10px;border-top:1px solid #cccc;">
                                         <b><?= number_format($sgst, 2) ?></b>
@@ -198,7 +207,7 @@
                                 </tr>
                             <?php } else { ?>
                                 <tr>
-                                    <td align="right" colspan="6" style="border-top:1px solid #cccc;"><strong>IGST
+                                    <td align="right" colspan="6" style="border-top:1px solid #cccc; padding:5px; "><strong>IGST
                                             :</strong></td>
                                     <td align="right" class="brlft tot" style="padding-right:10px;border-top:1px solid #cccc;">
                                         <b><?= number_format($gst_amount, 2) ?></b>
@@ -211,11 +220,13 @@
 
                             <tr>
                                 <td colspan="5" align="left"
-                                    style="padding-left:10px;font-weight:bold; border:1px solid #cccc;">
+                                    style="font-weight:bold; border:1px solid #cccc; padding:5px; padding-left:15px;">
                                     Rupees In Words : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <?= ucfirst(number_to_words(round($total_amount))) ?> Rupees Only
                                 </td>
-                                <td align="right" class="brlft topbot"><b>Total :</b></td>
+
+                                <td style="text-align:right; padding-right:5px"><b>Total :</b></td>
+                                
                                 <td align="right" class="brlft topbot"
                                     style="padding-right:10px;font-weight:bold;border-top:1px solid #cccc;">
                                     <?= number_format(round($total_amount), 2) ?>
@@ -227,26 +238,30 @@
             </tr>
 
             <tr>
-                <td colspan="7" style="padding:0px;border:0px;">
+                <td colspan="7" style="padding:5px;">
                     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td valign="top" height="80px" align="left" style="padding-left:5px;border-top:1px" width="40%">
-                                Bank : <?= html_escape($record['bank_name'] ?? '') ?><br>
-                                Account No. : <?= html_escape($record['account_no'] ?? '') ?><br>
-                                Branch : <?= html_escape($record['branch'] ?? '') ?><br>
-                                IFSC Code : <?= html_escape($record['IFSC_code'] ?? '') ?>
+                        <tr   >
+                            <td valign="top" height="80px" align="left" style="padding-left:10px;border-top:1px" width="40%">
+                               <div style="font-size: 12px; line-height: 1.5;">
+    <div><strong>Bank:</strong> <?= html_escape($record['bank_name'] ?? '') ?></div>
+    <div><strong>Account No.:</strong> <?= html_escape($record['account_no'] ?? '') ?></div>
+    <div><strong>Branch:</strong> <?= html_escape($record['branch'] ?? '') ?></div>
+    <div><strong>IFSC Code:</strong> <?= html_escape($record['IFSC_code'] ?? '') ?></div>
+</div>
+
                             </td>
                             <td valign="top" align="center" class="brlft" style="border-top:0px;">
                                 <img src="<?= base_url('img/ASE-seal.png') ?>" alt="" width="30%"><br><br><br>Checked By
                             </td>
                             <td align="center" class="brlft" style="border-top:0px;" width="40%">
-                                For <b style="font-size:20px;"><?= html_escape($record['company_name']) ?></b>
+                                For  &nbsp;<b style="font-size:20px;"><?= html_escape($record['company_name']) ?></b>
                             </td>
                         </tr>
                     </table>
                 </td>
             </tr>
         </table>
+        <br>
         <button type="button" class="btn btn-primary" onclick="window.location.href='<?= site_url('invoice-list') ?>'">
             ← Back To List
         </button>

@@ -39,6 +39,7 @@
             <h3 class="box-title text-white">Invoice List</h3>
         </div>
 
+
         <div class="box-body table-responsive">
             <table class="table table-hover table-bordered table-striped" id="item_list">
                 <thead>

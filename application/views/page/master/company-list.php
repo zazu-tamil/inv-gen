@@ -23,6 +23,8 @@
                         <th>Company Name</th>
                         <th>Mobile / Email</th>
                         <th>Address</th>
+                        <th>Invoice design</th>
+
                         <!-- <th>Invoice Design</th> -->
                         <th>Status</th>
                         <th colspan="2" class="text-center">Action</th>
@@ -43,7 +45,9 @@
                             </td>
                             <td><?php echo str_replace("\n", "<br>", $ls['address']); ?></td>
                             <!-- <td><?php echo $ls['inv_design'] ?></td> -->
+                            <td><?php echo $ls['inv_design'] ?></td>
                             <td><?php echo $ls['status'] ?></td>
+
                             <td class="text-center">
                                 <button data-toggle="modal" data-target="#edit_modal"
                                     value="<?php echo $ls['company_id'] ?>" class="edit_record btn btn-primary btn-xs"
@@ -212,11 +216,11 @@
                                         <label for="inv_design">Invoice Design</label>
                                         <select name="inv_design" id="inv_design" class="form-control">
                                             <option value="">Select Invoice Design</option>
-                                            <option value="1">Invoice Desigh 1</option>
-                                            <option value="2">Invoice Desigh 2</option>
-                                            <option value="3">Invoice Desigh 3</option>
-                                            <option value="4">Invoice Desigh 4</option>
-                                            <option value="5">Invoice Desigh 5</option>
+                                            <option value="1">Invoice Design 1</option>
+                                            <option value="2">Invoice Design 2</option>
+                                            <option value="3">Invoice Design 3</option>
+                                            <option value="4">Invoice Design 4</option>
+                                            <option value="5">Invoice Design 5</option>
                                         </select>
                                     </div>
                                 </div>

@@ -487,7 +487,22 @@ class Master extends CI_Controller
 
         $data['pagination'] = $this->pagination->create_links();
 
+        // Convert numeric invoice design (1–5) into human-readable label.
+        // Example: 1 → "Invoice Design 1". If value is outside 1–5,
+        // set it to "Unknown Design" to avoid displaying invalid selections.
 
+        $design = $data['record_list'][0]['inv_design'];
+
+        if ($design >= 1 && $design <= 5) {
+            $data['record_list'][0]['inv_design'] = "Invoice Design $design";
+        } else {
+            $data['record_list'][0]['inv_design'] = "Unknown Design";
+        }
+
+      
+ 
+               
+              
 
         $this->load->view('page/master/company-list', $data);
     }

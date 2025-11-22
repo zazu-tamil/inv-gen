@@ -102,14 +102,14 @@
 
         <table class="mb10">
             <tr>
-                <td class="w70">
-                    <strong>Bill To:</strong><br>
+                <td  style=" width:60%">
+                    <strong>Client:</strong><br>
                     <?= html_escape($record['customer_name']) ?><br>
                     <?= nl2br(html_escape($record['customer_address'])) ?>
                 </td>
-                <td>
+                <td style="line-height:20px">
                     <strong>Invoice No:</strong> <?= html_escape($record['invoice_no']) ?><br>
-                    <strong>Date:</strong> <?= date('d-m-Y', strtotime($record['invoice_date'])) ?><br>
+                    <strong>Invoice Date:</strong> <?= date('d-m-Y', strtotime($record['invoice_date'])) ?><br>
                     <strong>GSTIN:</strong> <?= html_escape($record['GST']) ?>
                 </td>
             </tr>
@@ -138,8 +138,8 @@
                     <?php $subtotal += $item['amount']; ?>
                     <tr>
                         <td class="text-center"><?= $sno++ ?></td>
-                        <td><?= html_escape($item['item_desc']) ?></td>
-                        <td class="text-center"><?= html_escape($item['hsn_code']) ?></td>
+                         <td><?php echo stripcslashes(htmlspecialchars($item['item_desc'])); ?></td>
+                <td><?php echo stripcslashes(htmlspecialchars($item['hsn_code'])); ?></td>
                         <td class="text-center"><?= html_escape($item['uom']) ?></td>
                         <td class="text-right"><?= number_format($item['qty'], 2) ?></td>
                         <td class="text-right"><?= number_format($item['rate'], 2) ?></td>
@@ -149,7 +149,7 @@
 
                 <!-- Gross Total -->
                 <tr>
-                    <td colspan="6" class="text-right bold">Gross Amount :</td>
+                    <td colspan="6" class="text-right bold">Gross Total :</td>
                     <td class="text-right bold"><?= number_format($total_gross_amount, 2) ?></td>
                 </tr>
 
@@ -176,7 +176,7 @@
                 <tr>
                     <td colspan="3" style="text-align: center;"><strong>Amount in Words:
                             <?= ucfirst(number_to_words(round($total_amount))) ?> Rupees Only</strong></td>
-                    <td colspan="3" class="text-right bold" style="font-size:14px;">Total Amount :</td>
+                    <td colspan="3" class="text-right bold" style="font-size:14px;">Invoice Total :</td>
                     <td class="text-right bold" style="font-size:14px;">
                         <?= number_format(round($total_amount), 2) ?>
                     </td>
@@ -185,11 +185,16 @@
 
                 <tr>
                     <td colspan="4">
-                        <strong>Bank Details:</strong><br>
-                        Bank Name : <?= html_escape($record['bank_name'] ?? '') ?><br>
-                        A/c No : <?= html_escape($record['account_no'] ?? '') ?><br>
-                        Branch : <?= html_escape($record['branch'] ?? '') ?><br>
-                        IFSC : <?= html_escape($record['IFSC_code'] ?? '') ?>
+
+                                                <div style="font-size: 12px; line-height: 1.5;">
+    <div><strong>Bank:</strong> <?= html_escape($record['bank_name'] ?? '') ?></div>
+    <div><strong>Account No.:</strong> <?= html_escape($record['account_no'] ?? '') ?></div>
+    <div><strong>Branch:</strong> <?= html_escape($record['branch'] ?? '') ?></div>
+    <div><strong>IFSC Code:</strong> <?= html_escape($record['IFSC_code'] ?? '') ?></div>
+</div>
+
+
+
                     </td>
                     <td class="text-center" colspan="3">
                         <br>
@@ -200,6 +205,7 @@
             </tbody>
         </table>
 
+        <br>
         <!-- Print Button (hidden on print) -->
         <button type="button" class="btn btn-primary" onclick="window.location.href='<?= site_url('invoice-list') ?>'">
             ← Back To List

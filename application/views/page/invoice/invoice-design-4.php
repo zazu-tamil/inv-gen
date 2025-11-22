@@ -75,7 +75,9 @@
                 margin: 15px 0 4px 0;
                 padding: 7px 4px 7px 10px;
                 background: #f1f6fc;
-                border-left: 4px solid #0077aa;
+                /* border-left: 4px solid #0077aa; */
+                border-left: 4px solid gray;
+
                 font-size: 0.97rem;
             }
 
@@ -129,7 +131,7 @@
             <table width="100%" class="invm-items">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Sr. No.</th>
                         <th>Description</th>
                         <th>HSN/SAC</th>
                         <th>Qty</th>
@@ -145,8 +147,9 @@
                         $taxable_total += $item['amount']; ?>
                         <tr>
                             <td class="text-center"><?= $sno++ ?></td>
-                            <td><?= html_escape($item['item_desc']) ?></td>
-                            <td class="text-center"><?= html_escape($item['hsn_code']) ?></td>
+
+                              <td><?php echo stripcslashes(htmlspecialchars($item['item_desc'])); ?></td>
+                <td><?php echo stripcslashes(htmlspecialchars($item['hsn_code'])); ?></td>
                             <td class="text-center"><?= number_format($item['qty'], 2) ?></td>
                             <td class="text-center"><?= html_escape($item['uom']) ?></td>
                             <td class="text-right"><?= number_format($item['rate'], 2) ?></td>
@@ -160,7 +163,7 @@
                 </tbody>
                 <tfoot>
                     <tr class="invm-amounts">
-                        <td colspan="6" align="right">Taxable Amount</td>
+                        <td colspan="6" align="right">Value Before Tax</td>
                         <td align="right"><?= number_format($taxable_total, 2) ?></td>
                     </tr>
                     <?php if ($item['customer_state'] == $item['company_state']) {

@@ -85,7 +85,8 @@
 
                 </tr>
                 <tr>
-                    <td colspan="2"><b>Bill To:</b> <?= html_escape($record['customer_name']) ?> |
+                    <td colspan="2"><b>Invoice To :</b> <?= html_escape($record['customer_name']) ?> <br>
+                    <p style="height:3px;"></p>
                         <?= nl2br(html_escape($record['customer_address'])) ?> |
                         GST No: <?= html_escape($record['GST'] ?? 'Unregistered') ?>
                     </td>
@@ -93,23 +94,34 @@
                 </tr>
             </table>
             <table width="100%" class="table">
-                <tr>
-                    <th width="5%">#</th>
+                <!-- <tr>
+                    <th width="5%; padding:5px ; border:2px solid red">Line No.</th>
                     <th width="38%">Description</th>
                     <th width="10%">HSN/SAC</th>
                     <th width="8%">Qty</th>
                     <th width="8%">Unit</th>
                     <th width="12%">Rate (₹)</th>
                     <th width="14%">Amount (₹)</th>
-                </tr>
+                </tr> -->
+
+                  <tr>
+        <th style="width:5%; padding:5px; ">Line No.</th>
+        <th style="width:38%; padding:5px; ">Description</th>
+        <th style="width:10%; padding:5px;">HSN / SAC Code</th>
+        <th style="width:8%; padding:5px; ">Quantity</th>
+        <th style="width:8%; padding:5px; ">Unit</th>
+        <th style="width:12%; padding:5px; ">Price/Unit (₹)</th>
+        <th style="width:14%; padding:5px; ">Line Total (₹)</th>
+    </tr>
+
                 <?php $sno = 1;
                 $taxable_total = 0; ?>
                 <?php foreach ($items as $item):
                     $taxable_total += $item['amount']; ?>
                     <tr>
                         <td align="center"><?= $sno++ ?></td>
-                        <td><?= html_escape($item['item_desc']) ?></td>
-                        <td align="center"><?= html_escape($item['hsn_code']) ?></td>
+                          <td><?php echo stripcslashes(htmlspecialchars($item['item_desc'])); ?></td>
+                <td><?php echo stripcslashes(htmlspecialchars($item['hsn_code'])); ?></td>
                         <td align="center"><?= number_format($item['qty'], 2) ?></td>
                         <td align="center"><?= html_escape($item['uom']) ?></td>
                         <td align="right"><?= number_format($item['rate'], 2) ?></td>
