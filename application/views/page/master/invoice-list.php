@@ -1,6 +1,6 @@
 <?php include_once(VIEWPATH . '/inc/header.php');
 // echo '<pre>';
-// print_r($_POST);
+// print_r($record_list);
 // echo '</pre>';
 ?>
 <section class="content-header">
@@ -50,7 +50,7 @@
                         <th>Invoice No</th>
                         <th>Ref No</th>
                         <th>Invoice Amount</th>
-                        <th>Status</th>
+                        <!-- <th>Status</th> -->
                         <th class="text-center" colspan="3">Action</th>
                     </tr>
                 </thead>
@@ -64,9 +64,9 @@
                             <td><?= $ls['invoice_no'] ?></td>
                             <td><?= $ls['your_ref_no'] ?></td>
                             <td><?= number_format($ls['total_amount'],2) ?></td>
-                            <td><?php echo $ls['status']; ?></td>
+                            <!-- <td><?php echo $ls['status']; ?></td> -->
                             <td class="text-center">
-                                <a href="<?php echo site_url('invoice-print/' . $ls['invoice_id']); ?>"
+                                <a href="<?php echo site_url('invoice-print/' . $ls['invoice_id']); ?>" target="_blank"
                                     class="btn btn-success btn-xs" title="Print">
                                     <i class="fa fa-print"></i>
                                 </a>

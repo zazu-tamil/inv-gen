@@ -344,35 +344,37 @@ class Master extends CI_Controller
         }
 
         $sql = "
-        SELECT 
-                c.company_name,
-                d.customer_name,
-                a.invoice_no,
-                a.invoice_date,
-                a.bank_id,
-                a.invoice_id,
-                a.your_ref_no,
-                b.*,
-                e.bank_name,
-                sum(b.amount) as total_amount
-            FROM invoice_info as a
-            LEFT JOIN invoice_item_info as b ON a.invoice_id = b.invoice_id AND b.status='Active'
-            LEFT JOIN company_info as c ON a.company_id = c.company_id AND c.status='Active'
-            LEFT JOIN customer_info as d ON a.customer_id = d.customer_id AND d.status='Active'
-            left join company_bank_info as e on a.bank_id = e.bank_id AND e.status='Active'
-            WHERE a.status='Active'
-                AND ( '" . $this->db->escape_str($srch_customer_id) . "' = '' OR a.customer_id = '" . $this->db->escape_str($srch_customer_id) . "' )
-                AND ( '" . $this->db->escape_str($srch_company_id) . "' = '' OR a.company_id = '" . $this->db->escape_str($srch_company_id) . "' )
-            GROUP BY a.invoice_id
-            ORDER BY a.invoice_date desc, a.invoice_id DESC
+           SELECT 
+            c.company_name,
+            d.customer_name,
+            a.invoice_no,
+            a.invoice_date,
+            a.bank_id,
+            a.invoice_id,
+            a.your_ref_no,
+            e.bank_name,
+            b.amount,
+            sum(b.amount) as total_amount
+        FROM invoice_info AS a 
+        left join invoice_item_info as b on a.invoice_id = b.invoice_id and b.`status`='Active'
+        LEFT JOIN company_info AS c 
+            ON a.company_id = c.company_id AND c.status = 'Active'
+        LEFT JOIN customer_info AS d 
+            ON a.customer_id = d.customer_id AND d.status = 'Active'
+        LEFT JOIN company_bank_info AS e 
+            ON a.bank_id = e.bank_id AND e.status = 'Active'
+        WHERE a.status = 'Active'
+        group by a.invoice_id
+        ORDER BY a.invoice_date DESC, a.invoice_id DESC
+
             LIMIT " . $this->uri->segment(2, 0) . "," . $config['per_page'] . "
         ";
 
 
         $query = $this->db->query($sql);
-        $data['record_list'] = $query->result_array();
-
-        $data['pagination'] = $this->pagination->create_links();
+        $data['record_list'] = $query->result_array(); 
+       
+         $data['pagination'] = $this->pagination->create_links();
         $this->load->view('page/master/invoice-list', $data);
     }
 
