@@ -17,30 +17,29 @@ echo '</pre>';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tax Invoice - Beauty Wares</title>
-       <!-- Add this inside your <head> or before closing </body> -->
-                    <script src="https://cdn.jsdelivr.net/npm/kjua@0.8.2/kjua.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 
-                    <style>
-                        /* small styles — customize as you like */
-                        .qr-block {
-                            text-align: center;
-                            padding: 6px;
-                            vertical-align: middle;
-                        }
+    <style>
+        /* small styles — customize as you like */
+        .qr-block {
+            text-align: center;
+            padding: 6px;
+            vertical-align: middle;
+        }
 
-                        .qr-title {
-                            font-size: 13px;
-                            font-weight: 700;
-                            margin-bottom: 6px;
-                        }
+        .qr-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
 
-                        .qr-svg {
-                            display: inline-block;
-                            border: 1px solid #eee;
-                            padding: 4px;
-                            border-radius: 6px;
-                        }
-                    </style>
+        .qr-svg {
+            display: inline-block;
+            border: 1px solid #eee;
+            padding: 4px;
+            border-radius: 6px;
+        }
+    </style>
     <style>
         body {
             font-family: open, sans-serif;
@@ -252,17 +251,17 @@ echo '</pre>';
                         <br>
                         <?= nl2br(html_escape($record['company_address'])) ?>
                     </td>
-                 
 
-                    <!-- Your table cell -->
-                    <td class="qr-block">
-                        <div class="qr-title">TAX INVOICE / QR CODE</div>
 
-                        <!-- target where the SVG will be injected -->
-                        <div id="qr-target" aria-hidden="true"></div>
+                    <td class="qr-block" style="text-align:center;">
+
+                        <div class="qr-title" style="font-size:14px;font-weight:bold;">TAX INVOICE / QR CODE</div>
+
+                        <!-- SVG output will appear here -->
+                        <div id="qr_svg"></div>
 
                         <br>
-                        <b>Invoice No:</b> <?php echo htmlspecialchars($record['invoice_no'] ?? '-'); ?><br>
+                        <b>Invoice No:</b> <?php echo $record['invoice_no'] ?? '-' ?>
                     </td>
 
 
@@ -621,6 +620,27 @@ echo '</pre>';
         return trim($words);
     }
     ?>
+
+    <script>
+        // PHP → JS variable
+        var invoiceNo = <?php echo json_encode($record['invoice_no'] ?? ''); ?>;
+
+        // Generate QR when page loads
+        document.addEventListener("DOMContentLoaded", function () {
+            var typeNumber = 0;      // auto size
+            var errorLevel = 'H';    // high correction
+
+            var qr = qrcode(typeNumber, errorLevel);
+            qr.addData(invoiceNo);
+            qr.make();
+
+            // SVG Output
+            document.getElementById("qr_svg").innerHTML = qr.createSvgTag({
+                cellSize: 4,
+                margin: 2
+            });
+        });
+    </script>
 </body>
 
 </html>
