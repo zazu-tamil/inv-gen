@@ -38,8 +38,8 @@
 
         .header {
             border-bottom: 3px solid #000;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            /* padding-bottom: 10px; */
+            /* margin-bottom: 15px; */
         }
 
         .logo {
@@ -91,7 +91,7 @@
         }
 
         .qr-title {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: bold;
             text-align: left;
         }
@@ -152,7 +152,7 @@
                 background: #fff !important;
                 padding: 0 !important;
                 margin: 0 !important;
-                font-size: 14px;
+                font-size: 10px;
             }
 
             .invoice-container {
@@ -190,7 +190,7 @@
         <table class="header">
             <tr>
                 <td width="60%">
-                    <div class="logo"><img src="<?php echo base_url('asset/images/b.png')?>" alt=""></div>
+                    <div class="logo"><img src="<?php echo base_url('asset/images/b.png')?>" alt="" height="60px"></div>
                     <div><i>It's all about your dream home</i></div>
                     <br>
                     396, Sathy Road, Ganapathy, Coimbatore-641006,<br>
@@ -201,7 +201,7 @@
                 </td>
                 <td class="qr-block">
                     <div class="qr-title">TAX INVOICE/QR CODE</div>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=Sample" class="qr" alt="QR">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=Sample" class="qr" alt="QR" height="60px">
                     <br>
                     <p style="text-align:left !important;">IRN No: fbe40cf2737e486da64184e0dc9e5a147cb0d35680c9</p><br>
                      
@@ -238,15 +238,12 @@
             <tr>
                 <td>
                     PRJ51483 - AS ENTERPRISES<br>
-                    32 - ALAMELU MANGAMMAL LAYOUT,<br>
-                    1ST STREET,<br>
-                    PULIYAKULAM,<br>
+                    32 - ALAMELU MANGAMMAL LAYOUT,<br> 
+                   
                     COIMBATORE - 641045.<br>
-                    CONTACT : MR.MADHAN<br>
-                    MOBILE : 9943744222 / 9943744222<br>
-                    GST NO : 33AOBPS9291N1Z8<br>
-                    <b>PAN NO :</b> -<br>
-                    Place Of Supply : Tamil Nadu
+                   
+                 
+                    GST NO : 33AOBPS9291N1Z8<br> 
                 </td>
                 <td>
                   
@@ -513,21 +510,10 @@
 
                 <td colspan="3" style="text-align:center; font-weight:bold;">
                     For &nbsp; BEAUTYWARES<br><br>
-                    <span style="font-size:13px;">Authorised Signatory</span>
-                </td>
+                 </td>
             </tr>
 
-            <tr>
-                <td colspan="2" style="height:40px;">
-                    <b>Mobile No :</b>
-                </td>
-
-                <td colspan="2" style="text-align:center; font-weight:bold; padding-top:20px;">
-                    Customer Signature
-                </td>
-
-                <td colspan="4"></td>
-            </tr>
+            
 
         </table>
     </div>
