@@ -122,6 +122,9 @@
                                             <option value="3">Invoice Desigh 3</option>
                                             <option value="4">Invoice Desigh 4</option>
                                             <option value="5">Invoice Desigh 5</option>
+                                            <option value="6">Invoice Desigh 6</option>
+                                            <option value="7">Invoice Desigh 7</option>
+                                            <option value="8">Invoice Desigh 8</option>
                                         </select>
                                     </div>
                                 </div>
@@ -221,6 +224,9 @@
                                             <option value="3">Invoice Design 3</option>
                                             <option value="4">Invoice Design 4</option>
                                             <option value="5">Invoice Design 5</option>
+                                            <option value="6">Invoice Design 6</option>
+                                            <option value="7">Invoice Design 7</option>
+                                            <option value="8">Invoice Design 8</option>                                                
                                         </select>
                                     </div>
                                 </div>
