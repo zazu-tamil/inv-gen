@@ -1,6 +1,6 @@
 <?php
 
-if ($record['inv_design'] == '1') {
+if ($record['inv_design'] == '7') {
     include_once(VIEWPATH . 'page/invoice/invoice-design-1.php');
 } else if ($record['inv_design'] == '2') {
     include_once(VIEWPATH . 'page/invoice/invoice-design-2.php');
@@ -10,6 +10,10 @@ if ($record['inv_design'] == '1') {
     include_once(VIEWPATH . 'page/invoice/invoice-design-4.php');
 } else if ($record['inv_design'] == '5') {
     include_once(VIEWPATH . 'page/invoice/invoice-design-5.php');
+} else if ($record['inv_design'] == '6') {
+    include_once(VIEWPATH . 'page/invoice/invoice-design-6.php');
+} else if ($record['inv_design'] == '1') {
+    include_once(VIEWPATH . 'page/invoice/invoice-design-7.php');
 }
 
 ?>
