@@ -93,7 +93,7 @@
         .qr-title {
             font-size: 14px;
             font-weight: bold;
-            text-align: center;
+            text-align: left;
         }
 
         .items-table th,
@@ -203,8 +203,8 @@
                     <div class="qr-title">TAX INVOICE/QR CODE</div>
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=Sample" class="qr" alt="QR">
                     <br>
-                    <b>IRN No:</b> fbe40cf2737e486da64184e0dc9e5a147c734f0d8670ab1abd52ad40d35860c9<br>
-                    <b>Ack No:</b> 12345678901234567890
+                    <p style="text-align:left !important;">IRN No: fbe40cf2737e486da64184e0dc9e5a147cb0d35680c9</p><br>
+                     
                 </td>
             </tr>
         </table>
