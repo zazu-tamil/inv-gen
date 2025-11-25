@@ -49,7 +49,8 @@ class Invoice extends MY_Controller
             e.branch,
             a.invoice_date,
             e.account_no,
-            e.IFSC_code
+            e.IFSC_code,
+            d.gst as customer_gstin
             from invoice_info as a  
             left join company_info as c on  c.company_id = a.company_id and c.status='Active'
             left join customer_info as d on d.customer_id = a.customer_id and d.`status`='Active'

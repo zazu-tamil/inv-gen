@@ -176,9 +176,9 @@
                                                 <?php foreach ($item_rows as $item): ?>
                                                     <tr class="item-row">
                                                         <td> 
-                                                                <input type="text" name="item_desc[]" class="form-control mt-2"  placeholder="Enter Item Name" required value="<?php echo $item['item_desc']; ?>">
+                                                                <input type="text" name="item_desc[]" class="form-control mt-2"  placeholder="Enter Item Name" required value="<?php echo stripcslashes(htmlspecialchars($item['item_desc'])); ?>">
                                                                 <br>
-                                                                <input type="text" name="hsn_code[]" class="form-control" placeholder="Enter HSN Code" required value="<?php echo $item['hsn_code']; ?>">
+                                                                <input type="text" name="hsn_code[]" class="form-control" placeholder="Enter HSN Code" required value="<?php echo stripcslashes(htmlspecialchars($item['hsn_code'])); ?>">
                                                         </td>
                                                         <!-- <td><input type="text" name="hsn_code[]" class="form-control"></td> -->
                                                         <td>
