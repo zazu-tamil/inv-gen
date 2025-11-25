@@ -210,9 +210,10 @@
         }
         
         .bank-details strong {
-            display: block;
+       
             margin-bottom: 5px;
         }
+        
         
         .bank-details p {
             margin: 2px 0;
