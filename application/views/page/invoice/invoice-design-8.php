@@ -213,7 +213,7 @@
        
             margin-bottom: 5px;
         }
-        
+
         
         .bank-details p {
             margin: 2px 0;
@@ -276,7 +276,7 @@
                 </div>
                 <div class="invoice-details-row">
                     <strong>Date</strong>
-                    <span>29-10-2025</span>
+                    <span>25-10-2025</span>
                 </div>
                 <div class="invoice-details-row">
                     <strong>Place of supply</strong>
