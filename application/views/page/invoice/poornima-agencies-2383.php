@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POORNIMA'S AGENCIES INVOICE 2383</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #ffffff;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            background: white;
+            border: 1px solid #000;
+            /* border-top: 1px solid #000 !important; */
+            /* border-right: 1px solid #000 !important;
+            border-bottom: 1px solid #000 !important;
+            border-left: 1px solid #000 !important; */
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .header-top-left {
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .header-top-right {
+            text-align: right;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .company-name {
+            text-align: center;
+            font-size: 25px;
+            font-weight: bolder;
+            letter-spacing: 2px;
+        }
+
+        .company-details {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bolder;
+        }
+
+        .company-email {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bolder;
+        }
+
+        .invoice-title {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 8px 0 5px;
+        }
+
+        .main-content {
+            border-top: 2px solid #000;
+            display: flex;
+
+        }
+
+        .bill-to-section {
+            flex: 1;
+            border: 0px solid #000;
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
+            padding: 10px;
+            font-size: 10px;
+        }
+
+        .bill-to-label {
+            font-weight: bold;
+            color: #000;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .bill-to-details {
+            font-weight: normal;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .details-section {
+            flex: 1;
+            /* border: 1px solid #222222; */
+            border-left: 1px solid #000;
+            border-bottom: 1px solid #000;
+            padding: 8px;
+            font-size: 9px;
+        }
+
+
+        .detail-label {
+            font-weight: bolder;
+            color: #000;
+            font-size: 14px !important;
+        }
+
+        .detail-value {
+            text-align: left !important;
+            font-weight: bold;
+            color: #000;
+            font-size: 13px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9px;
+        }
+
+        table thead {
+            background-color: #f0f0f0;
+        }
+
+        table th {
+            border: 1px solid #000;
+            padding: 6px 4px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 9px;
+        }
+
+        table td {
+            border-right: 1px solid #000;
+            padding: 2px 2px;
+            text-align: left;
+            font-size: 9px;
+        }
+
+        .col-sno {
+            width: 35px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .col-description {
+            text-align: left;
+            font-size: 13px;
+            width: auto;
+        }
+
+        .col-hsn {
+            width: 50px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .col-qty {
+            width: 50px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .col-rate {
+            width: 60px;
+            text-align: right;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .col-amount {
+            width: 70px;
+            text-align: right;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .subtotal-row {
+            border-top: 1px solid #000 !important;
+            border-bottom: 1px solid #000 !important;
+        }
+
+        .subtotal-label {
+            margin-right: 80px;
+            font-weight: bolder;
+            font-size: 14px !important;
+            text-align: right !important;
+        }
+
+        .subtotal-value {
+            display: block;
+            font-weight: bolder;
+            font-size: 14px;
+            text-align: right !important;
+        }
+
+        .continuation {
+            text-align: right !important;
+            font-weight: bold;
+            font-size: 10px;
+        }
+
+        .brought-forward-row {
+            font-weight: bold;
+            font-size: 9px;
+            margin-bottom: 5px;
+        }
+
+        .tax-section {
+            font-size: 9px;
+        }
+
+        .tax-header {
+            display: flex;
+            background-color: #f0f0f0;
+
+            padding-top: 5px;
+            font-weight: bold;
+        }
+
+        .tax-col {
+            padding: 6px 4px;
+            font-size: 13px !important;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .tax-col:last-child {
+            border-right: none;
+        }
+
+        .tax-data {
+            display: flex;
+            border-top: none;
+        }
+
+        .tax-data-col {
+            flex: 1;
+            padding: 4px;
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            text-align: center;
+        }
+
+        .tax-data-col:last-child {
+            border-right: none;
+        }
+
+        .rounded-off {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 12px;
+            margin-top: 5px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            padding-right: 10px;
+        }
+
+        .net-amount {
+            display: flex;
+            justify-content: flex-end;
+            font-weight: bold;
+            font-size: 10px;
+            margin-bottom: 8px;
+            padding-right: 10px;
+        }
+
+        .amount-in-words {
+            margin: 5px 5px;
+            font-size: 14px;
+            padding-left: 10px;
+        }
+
+        .bank-section {
+            padding: 10px;
+            border-top: 1px solid #000;
+            font-size: 9px;
+        }
+
+        .bank-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .bank-detail {
+            margin: 2px 0;
+            font-size: 13px;
+        }
+
+        .signature-section {
+            text-align: right;
+            border-top: 1px solid #000;
+            font-size: 9px;
+            padding: 10px 20px;
+        }
+
+        .signature-space {
+            margin-top: 40px;
+            margin-bottom: 5px;
+        }
+
+        .signature-name {
+            font-size: 13px;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+
+        .signature-name_2 {
+            font-size: 11px;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+
+
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            .page {
+                page-break-after: always;
+                margin-bottom: 0;
+            }
+
+            .continuation {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="" style="text-align: right !important;">(ORIGINAL) </div>
+    <div class="page">
+        <div class="header-top">
+            <div class="header-top-left">GSTIN: 33ADOPV7756P1ZD</div>
+            <div class="header-top-right">
+                CELL: 9790377605<br>
+                9629929229
+            </div>
+        </div>
+
+        <div class="company-name">POORNIMA'S AGENCIES</div>
+
+        <div class="company-details">
+            <div>No: 3/132, Kumaran Complex, Trichy Road, Kangayampalayam</div>
+            <div>Sulur, Coimbatore - 641401</div>
+        </div>
+
+        <div class="company-email">e-mail:poornimasagencies2021@gmail.com</div>
+
+        <div class="invoice-title">INVOICE</div>
+
+        <div class="main-content">
+            <div class="bill-to-section">
+                <div class="bill-to-label">To. AS ENTERPRISES</div>
+                <div class="bill-to-details">
+                    <div>32, ALAMELU MANGAMMAL LAYOUT,</div>
+                    <div>1st STREET , PULIYAKULAM</div>
+                    <div>COIMBATORE</div>
+                    <div>GSTIN : 33AOBPS9291N1Z8</div>
+                </div>
+            </div>
+
+
+
+            <div class="details-section">
+                <div class="detail-row">
+                    <span class="detail-label">Payment Terms</span>
+                    <span class="detail-value">: Credit</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Bill No</span>
+                    <span class="detail-value">: 2383</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date</span>
+                    <span class="detail-value">: 27/02/2026</span>
+                </div>
+                <br>
+                <hr style="border:1px solid #000;">
+                <p>&nbsp;</p>
+                <div class="detail-row">
+                    <span class="detail-label">UDYAM</span>
+                    <span class="detail-value">: TN-03-0030689</span>
+                </div>
+
+
+            </div>
+        </div>
+
+        <table style="width:100%;">
+            <thead>
+                <tr>
+                    <th class="sno_header">S.No</th>
+                    <th class="col-description description_header">Description</th>
+                    <th class="hsn_header">HSN/SAC</th>
+                    <th class="qty_header">Qty</th>
+                    <th class="rate_header">Rate</th>
+                    <th class="amount_header">Amount</th>
+                </tr>
+                <style>
+                    .sno_header,
+                    .description_header,
+                    .hsn_header,
+                    .qty_header,
+                    .rate_header,
+                    .amount_header {
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 14px;
+                    }
+                </style>
+            </thead>
+            <tbody>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">1</td>
+                    <td class="col-description">SURYA PLUS 25 KG</td>
+                    <td class="col-hsn">2522</td>
+                    <td class="col-qty">1</td>
+                    <td class="col-rate">975.01</td>
+                    <td class="col-amount">975.01</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">2</td>
+                    <td class="col-description">VALMA SHORT BODY ZEN</td>
+                    <td class="col-hsn">8481</td>
+                    <td class="col-qty">10</td>
+                    <td class="col-rate">546.00</td>
+                    <td class="col-amount">5459.97</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">3</td>
+                    <td class="col-description">VALMA PILLARCOCK ZEN</td>
+                    <td class="col-hsn">8481</td>
+                    <td class="col-qty">5</td>
+                    <td class="col-rate">639.61</td>
+                    <td class="col-amount">3198.51</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">4</td>
+                    <td class="col-description">VALMA ANGLE VALVE ZEN</td>
+                    <td class="col-hsn">8481</td>
+                    <td class="col-qty">5</td>
+                    <td class="col-rate">360.11</td>
+                    <td class="col-amount">1805.54</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">5</td>
+                    <td class="col-description">LEO CONNECT HOSE 18"</td>
+                    <td class="col-hsn">3917</td>
+                    <td class="col-qty">5</td>
+                    <td class="col-rate">88.40</td>
+                    <td class="col-amount">442.01</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">6</td>
+                    <td class="col-description">LEO CONNECT HOSE 24"</td>
+                    <td class="col-hsn">3917</td>
+                    <td class="col-qty">5</td>
+                    <td class="col-rate">97.50</td>
+                    <td class="col-amount">487.50</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">7</td>
+                    <td class="col-description">1 1/4 PVC WASTE HOSE</td>
+                    <td class="col-hsn">3917</td>
+                    <td class="col-qty">10</td>
+                    <td class="col-rate">45.50</td>
+                    <td class="col-amount">454.97</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">8</td>
+                    <td class="col-description">DR .FIXIT 301 1 LTR</td>
+                    <td class="col-hsn">4002</td>
+                    <td class="col-qty">1</td>
+                    <td class="col-rate">416.01</td>
+                    <td class="col-amount">416.01</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">9</td>
+                    <td class="col-description">SANIYA SHOWER WITH ARM</td>
+                    <td class="col-hsn">39221</td>
+                    <td class="col-qty">5</td>
+                    <td class="col-rate">338.00</td>
+                    <td class="col-amount">1690.00</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">10</td>
+                    <td class="col-description">AP FAST YELLOW 100ML</td>
+                    <td class="col-hsn">3213</td>
+                    <td class="col-qty">2</td>
+                    <td class="col-rate">104.00</td>
+                    <td class="col-amount">208.00</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">11</td>
+                    <td class="col-description">3/4*1/2" STEEL BUSH</td>
+                    <td class="col-hsn">7306</td>
+                    <td class="col-qty">8</td>
+                    <td class="col-rate">26.00</td>
+                    <td class="col-amount">208.00</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">12</td>
+                    <td class="col-description">1/2" GI COUPLING</td>
+                    <td class="col-hsn">73079</td>
+                    <td class="col-qty">5</td>
+                    <td class="col-rate">26.00</td>
+                    <td class="col-amount">130.00</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">13</td>
+                    <td class="col-description">TRACTOR UNO/UTSAV ACR DIST UD1 20 KG</td>
+                    <td class="col-hsn">3209</td>
+                    <td class="col-qty">1</td>
+                    <td class="col-rate">1300.00</td>
+                    <td class="col-amount">1300.00</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">14</td>
+                    <td class="col-description">WOODEN PLUG</td>
+                    <td class="col-hsn">4421</td>
+                    <td class="col-qty">20</td>
+                    <td class="col-rate">13.00</td>
+                    <td class="col-amount">259.87</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">15</td>
+                    <td class="col-description">2*5/16 COACH SCREW</td>
+                    <td class="col-hsn">7318</td>
+                    <td class="col-qty">12</td>
+                    <td class="col-rate">5.20</td>
+                    <td class="col-amount">62.40</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">16</td>
+                    <td class="col-description">1/2" M.S WASHER</td>
+                    <td class="col-hsn">7318</td>
+                    <td class="col-qty">0.100</td>
+                    <td class="col-rate">194.87</td>
+                    <td class="col-amount">19.49</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">17</td>
+                    <td class="col-description">3/4" ELE COUPLING SIKAN</td>
+                    <td class="col-hsn">3917</td>
+                    <td class="col-qty">2</td>
+                    <td class="col-rate">26.00</td>
+                    <td class="col-amount">52.00</td>
+                </tr>
+
+                <tr class="table-row item-row">
+                    <td class="col-sno">18</td>
+                    <td class="col-description">1" ELE COUPLING SIKAN</td>
+                    <td class="col-hsn">3917</td>
+                    <td class="col-qty">2</td>
+                    <td class="col-rate">26.00</td>
+                    <td class="col-amount">52.00</td>
+                </tr>
+                <style>
+                    .total_footer {
+                        border: 1px solid #000 !important;
+                        display: ;
+                    }
+                </style>
+                <tr class="total_footer">
+                    <td></td>
+                    <td>
+                        <span class="subtotal-label">Total</span>
+                    </td>
+                    <td></td>
+                    <td style="font-weight:bolder; font-size: 13px; text-align: center;">99.100</td>
+                    <td></td>
+                    <td style="font-weight:bolder; font-size: 13px;">17,215.90</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <div class="tax-section">
+            <div class="tax-header">
+                <div class="tax-col" style="width: 20%; f">Taxable Value</div>
+                <div class="tax-col" style="width: 16%;">CGST%</div>
+                <div class="tax-col" style="width: 16%;">AMT</div>
+                <div class="tax-col" style="width: 16%;">SGST%</div>
+                <div class="tax-col" style="width: 16%;">AMT</div>
+                <div class="tax-col" style="width: 16%;">NET%</div>
+                <div class="tax-col" style="width: 16%; border-right: none;">AMT</div>
+            </div>
+            <div class="tax-data">
+                <div class="tax-data-col" style="width: 20%;">928.58</div>
+                <div class="tax-data-col" style="width: 16%;">2.50</div>
+                <div class="tax-data-col" style="width: 16%;">23.22</div>
+                <div class="tax-data-col" style="width: 16%;">2.50</div>
+                <div class="tax-data-col" style="width: 16%;">23.22</div>
+                <div class="tax-data-col" style="width: 16%;">5.00<</div>
+                <div class="tax-data-col" style="width: 16%; border-right: none;">46.44</div>
+            </div>
+            <div class="tax-data">
+                <div class="tax-data-col" style="width: 20%;">13763.41</div>
+                <div class="tax-data-col" style="width: 16%;">9.00</div>
+                <div class="tax-data-col" style="width: 16%;">1238.71</div>
+                <div class="tax-data-col" style="width: 16%;">9.00</div>
+                <div class="tax-data-col" style="width: 16%;">1238.71</div>
+                <div class="tax-data-col" style="width: 16%;">18.00</div>
+                <div class="tax-data-col" style="width: 16%; border-right: none;">2477.41</div>
+            </div>
+
+
+
+        </div>
+
+        <div class="rounded-off">
+            <span style="margin-right: 70px;">Rounded Off :</span>
+            <span style="width: 70px; text-align: right;">0.00</span>
+        </div>
+
+
+        <style>
+            .eoe {
+                border-top: 2px solid #000;
+                border-bottom: 2px solid #000;
+                padding: 6px 10px;
+                display: flex;
+                justify-content: space-between;
+                font-weight: bold;
+                font-family: monospace;
+            }
+        </style>
+
+        <div class="eoe">
+            <span>E. & O.E.</span>
+            <span>Net Amount : ₹ 17,215.90</span>
+        </div>
+        <div class="amount-in-words">
+            Rupees Seventeen Thousand Two Hundred Fifteen and Ninety Paise Only
+        </div>
+
+        <div class="bank-section">
+            <div class="bank-title">Bank Details</div>
+            <div class="bank-detail">Bank Name: Bank of Baroda</div>
+            <div class="bank-detail">A/c No: 57280200000011</div>
+            <div class="bank-detail">IFSC Code: BARB0SULURX</div>
+            <div class="bank-detail">Branch: Sulur, Coimbatore</div>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-name">For POORNIMA'S AGENCIES</div>
+            <div class="signature-name_2">Authorised Signatory</div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
