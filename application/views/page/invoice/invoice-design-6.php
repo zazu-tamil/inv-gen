@@ -566,7 +566,7 @@ endif;
             <div style="display: flex; width: 100%;">
 
                 <div style="width:35%; border: 1px solid #000; box-sizing: border-box; border-top:0; border-right:0;">
-                    <p style="font-size: 12px; margin:0; padding:0px ">Terms & Conditions <br>1.Goods once sold cannot
+                    <p style="font-size: 14px; margin:0; padding:0px ">Terms & Conditions <br>1.Goods once sold cannot
                         be taken back. <br>
                         2.Interest @24 % p.. will be charged if the payment is not made with in the stipulated time
                         .<br>
