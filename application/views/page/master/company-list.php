@@ -125,6 +125,8 @@
                                             <option value="6">Invoice Desigh 6</option>
                                             <option value="7">Invoice Desigh 7</option>
                                             <option value="8">Invoice Desigh 8</option>
+                                            <option value="9">Poornima Agencies</option>
+                                            <option value="10">RDS Electric</option>
                                         </select>
                                     </div>
                                 </div>
@@ -136,7 +138,7 @@
                                                 placeholder="Address" required="true" rows="4"></textarea>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label>Status</label>
@@ -226,7 +228,9 @@
                                             <option value="5">Invoice Design 5</option>
                                             <option value="6">Invoice Design 6</option>
                                             <option value="7">Invoice Design 7</option>
-                                            <option value="8">Invoice Design 8</option>                                                
+                                            <option value="8">Invoice Design 8</option>
+                                            <option value="9">Poornima Agencies</option>
+                                             <option value="10">RDS Electric</option>
                                         </select>
                                     </div>
                                 </div>
@@ -239,7 +243,7 @@
                                                 placeholder="Address" required="true" rows="4"></textarea>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-12">

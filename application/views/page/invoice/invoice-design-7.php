@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: open, sans-serif;
-            font-size: 13px;
+            font-size: 15px !important;
             margin: 0;
             padding: 20px;
             background: #f4f4f4;
@@ -47,6 +47,7 @@
             font-weight: bold;
             text-transform: capitalize;
             color: #c00;
+            height: 78px;
         }
 
         .text-right {
@@ -91,7 +92,7 @@
         }
 
         .qr-title {
-            font-size: 10px;
+            font-size: 15px;
             font-weight: bold;
             text-align: left;
         }
@@ -152,7 +153,7 @@
                 background: #fff !important;
                 padding: 0 !important;
                 margin: 0 !important;
-                font-size: 10px;
+                font-size: 15px;
             }
 
             .invoice-container {
@@ -177,7 +178,8 @@
         .text_align {
             text-align: right !important;
         }
-        .text_heading_align{
+
+        .text_heading_align {
             text-align: left !important;
         }
     </style>
@@ -187,334 +189,519 @@
     <div class="invoice-container">
 
         <!-- Header -->
-        <table class="header">
+        <style>
+            .invoice_head {
+                width: 100%;
+                border: 2px solid #000;
+                border-collapse: collapse;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .invoice_head td {
+                border-right: 2px solid #000;
+                vertical-align: top;
+                padding: 12px;
+            }
+
+            .invoice_head td:last-child {
+                border-right: none;
+            }
+
+            .logo img {
+                height: 70px;
+            }
+
+            .address {
+                font-size: 14px;
+                line-height: 22px;
+                margin-top: 8px;
+            }
+
+            .review {
+                text-align: center;
+            }
+
+            .review_text {
+                color: red;
+                font-size: 14px;
+                margin-top: 55px;
+            }
+
+            .review img {
+                width: 120px;
+            }
+
+            .invoice_title {
+                font-size: 18px;
+                font-weight: bold;
+                padding-bottom: 8px;
+                margin-bottom: 20px;
+            }
+
+            .irn {
+                font-size: 14px;
+                margin-top: 120px;
+            }
+        </style>
+
+
+        <table class="invoice_head">
+
             <tr>
-                <td width="60%">
-                    <div class="logo"><img src="<?php echo base_url('asset/images/b.png')?>" alt="" height="60px"></div>
-                    <div><i>It's all about your dream home</i></div>
-                    <br>
-                    396, Sathy Road, Ganapathy, Coimbatore-641006,<br>
-                    Ph: 0422-432 6666 , 9750036333<br>
-                    E-Mail: projects.beautywares@gmail.com<br>
-                    Web: www.beautywares.in<br>
-                    <b>GST No: 33AAIFB2142G1ZZ</b>
+
+                <!-- LEFT SECTION -->
+                <td width="55%">
+
+                    <div class="logo">
+                        <img src="<?php echo base_url('asset/images/b.png'); ?>">
+                    </div>
+
+                    <div class="address">
+                        396, Sathy Road, Ganapathy, Coimbatore-641006,<br>
+                        Ph: 0422-432 6666 , 9750036333<br>
+                        E-Mail: projects.beautywares@gmail.com<br>
+                        Web: www.beautywares.in<br>
+                        <b>GST NO: 33AAIFB2142G1ZZ</b>
+                    </div>
+
                 </td>
-                <td class="qr-block">
-                    <div class="qr-title">TAX INVOICE/QR CODE</div>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=Sample" class="qr" alt="QR" height="60px">
-                    <br>
-                    <p style="text-align:left !important;">IRN No: fbe40cf2737e486da64184e0dc9e5a147cb0d35680c9</p><br>
-                     
+
+
+                <!-- MIDDLE QR SECTION -->
+                <td width="20%" class="review">
+
+                    <div class="review_text">
+                        Please post your <br> google reviews
+                    </div>
+
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&format=svg&data=https://g.page/r/your-google-review-link"
+                        height="80px" alt="QR Code">
+
+                </td>
+
+
+                <!-- RIGHT SECTION -->
+                <td width="25%">
+
+                    <div class="invoice_title">
+                        TAX INVOICE/QR CODE
+                    </div>
+
+                    <div class="irn">
+                        <b>IRN No:</b><br>
+                        4bf996719b4cf31ed79d6a5b14e9cf67f18ec30c9c860cd2f593f0336eaeb6bc
+                    </div>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <table width="100%" style="border: 0px solid #000!important; line-height: 6px;">
+            <tr>
+                <!-- LEFT SIDE -->
+                <td width="50%" valign="top">
+                    <table width="100%" style="border: 0px solid #000!important;">
+                        <tr>
+                            <td width="45%" style="border: 0px solid #000!important;"><b>Invoice Number</b></td>
+                            <td width="5%" style="border: 0px solid #000!important;">:</td>
+                            <td width="50%" style="border: 0px solid #000!important;"><b>BW/18820/ 25-26</b></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0px solid #000!important;"><b>Invoice Date</b></td>
+                            <td style="border: 0px solid #000!important;"><strong>:</strong></td>
+                            <td style="border: 0px solid #000!important;">03/03/2026</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0px solid #000!important;"><b>Customer Po No</b></td>
+                            <td style="border: 0px solid #000!important;"><strong>:</strong></td>
+                            <td style="border: 0px solid #000!important;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0px solid #000!important;"><b>Eway Bill No</b></td>
+                            <td style="border: 0px solid #000!important;"><strong>:</strong></td>
+                            <td style="border: 0px solid #000!important;"></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0px solid #000!important;"><b>Eway Bill Validity Dt</b></td>
+                            <td style="border: 0px solid #000!important;"><strong>:</strong></td>
+                            <td style="border: 0px solid #000!important;"></td>
+                        </tr>
+                    </table>
+                </td>
+
+                <!-- RIGHT SIDE -->
+                <td width="50%" valign="top">
+                    <table width="100%">
+                        <tr>
+                            <td style="border: 0px solid #000!important;" width="45%"><b>Payments Terms</b></td>
+                            <td style="border: 0px solid #000!important;" width="5%">:</td>
+                            <td style="border: 0px solid #000!important;" width="50%"><b>100% ADVANCE PAYMENT</b></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0px solid #000!important;"><b>Delivery Terms</b></td>
+                            <td style="border: 0px solid #000!important;"><strong>:</strong></td>
+                            <td style="border: 0px solid #000!important;">CUSTOMER PICKUP</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0px solid #000!important;"><b>Vehicle No</b></td>
+                            <td style="border: 0px solid #000!important;"><strong>:</strong></td>
+                            <td style="border: 0px solid #000!important;">TN51AH0733</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0px solid #000!important;"><b>Weight</b></td>
+                            <td style="border: 0px solid #000!important;"><strong>:</strong></td>
+                            <td style="border: 0px solid #000!important;">191.00</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0px solid #000!important;"><b>Sales Executive</b></td>
+                            <td style="border: 0px solid #000!important;"><strong>:</strong></td>
+                            <td style="border: 0px solid #000!important;"><b>MOHAMMED SHAFI</b></td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </table>
+        <style>
+            .bordered {
+                border-collapse: collapse;
+                width: 100%;
+            }
 
-        <!-- Invoice Details -->
-        <table>
-            <tr>
-                <td width="50%">
-                    <b>Invoice Number :</b> BW9482/25-26<br>
-                    <b>Invoice Date :</b> 19/09/2025<br>
-                    <b>Customer Po No :</b> THROUGH SALES PERSON<br>
-                    <b>Eway Bill No :</b> -<br>
-                    <b>Eway Bill Validity Dt :</b> -
-                </td>
-                <td width="50%" class="text-right">
-                    <b>Payments Terms :</b> 100% ADVANCE PAYMENT<br>
-                    <b>Delivery Terms :</b> CUSTOMER PICKUP<br>
-                    <b>Vehicle No :</b> TN99AD9941<br>
-                    <b>Weight :</b> 132.00<br>
-                    <b>Sales Executive :</b> MOHAMMED SHAFI.
-                </td>
-            </tr>
-        </table>
-
+            .bordered th,
+            .bordered td {
+                border: 1px solid #000;
+            }
+        </style>
         <!-- Billing & Delivery Address -->
-        <table class="bordered">
+        <table width="100%" border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse;">
+
+            <!-- Header -->
             <tr>
-                <th width="50%" class="bold">Billing Address</th>
-                <th width="50%" class="bold">Delivery Address</th>
+                <th width="50%" style="text-align:center;"><b>Billing Address</b></th>
+                <th width="50%" style="text-align:center;"><b>Delivery Address</b></th>
             </tr>
+
+            <!-- Address Row -->
             <tr>
-                <td>
-                    PRJ51483 - AS ENTERPRISES<br>
-                    32 - ALAMELU MANGAMMAL LAYOUT,<br> 
-                   
+                <td valign="top">
+                    <b>PRJ51483 - A.S ENTERPRISES</b><br>
+                    32 - ALAMELU MANGAMMAL LAYOUT,<br>
+                    1ST STREET,<br>
+                    PULIYAKULAM,<br>
                     COIMBATORE - 641045.<br>
-                   
-                 
-                    GST NO : 33AOBPS9291N1Z8<br> 
+
+                    CONTACT : <b>MR.MADHAN</b><br>
+                    MOBILE : <b>9943274222</b> / 9943274222<br>
+
+                    GST NO : 33AOBPS9291N1Z8<br><br>
+
+                    PAN NO : AOBPS9291N<br>
+                    Place OF Supply : Tamil Nadu
                 </td>
-                <td>
-                  
-                    <b>Dispatch Address:</b><br> 
+
+                <td valign="top">
+                    <b>AIR FORCE STATION</b><br>
+                    100 - AIR FORCE STATION,<br>
+                    KANGEYAMPALAYAM POST,<br>
+                    SULUR - 641401<br>
+
+                    CONTACT : <b>MR.MADHAN</b><br>
+                    MOBILE : 9047383433
                     <br>
-                       Airforce Sulur 
+                    <hr style="border: 1px solid #000;">
+                    <b>Dispatch Address :</b>
                 </td>
             </tr>
+
+
         </table>
+        <!-- ITEM TABLE -->
+        <table width="100%" border="1" cellspacing="0" cellpadding="6"
+            style="border-collapse:collapse;font-family:serif;font-size:14px;">
 
-        <!-- Items Table - ALL VALUES INCREASED BY 30% -->
-        <table class="items-table">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Item Code</th>
-                    <th>Goods / Services</th>
-                    <th>HSN Code</th>
-                    <th>Qty</th>
-                    <th>UOM</th>
-                    <th>Rate</th>
-                    <th>Taxable Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>02971C</td>
-                    <td class="text_heading_align">PRY ELITE EWC S TRAP WHITE</td>
-                    <td>39221000</td>
-                    <td>2.00</td>
-                    <td>NOS</td>
-                    <td class="text_align">1878.31</td>
-                    <td class="text_align">3756.62</td>
-                </tr>
+            <tr style="text-align:center;background:#efefef;">
+                <th width="5%">No.</th>
+                <th width="12%">Item Code</th>
+                <th width="38%">Goods / Services</th>
+                <th width="10%">HSN Code</th>
+                <th width="7%">Qty</th>
+                <th width="7%">UOM</th>
+                <th width="10%">Rate</th>
+                <th width="11%">Taxable Value</th>
+            </tr>
 
-                <tr>
-                    <td>2</td>
-                    <td>B9091C</td>
-                    <td class="text_heading_align">PRY SLIMLINE SINGLE FLUSH TANK WHITE (ECONOMY)</td>
-                    <td>39229000</td>
-                    <td>10.00</td>
-                    <td>NOS</td>
-                    <td class="text_align">1174.80</td>
-                    <td class="text_align">11748.00</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>B341C</td>
-                    <td class="text_heading_align">PRY COMFORT PLUS REGULAR SEAT COVER WHITE</td>
-                    <td>39229000</td>
-                    <td>10.00</td>
-                    <td>NOS</td>
-                    <td class="text_align">597.65</td>
-                    <td class="text_align">5976.50</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>H404A1</td>
-                    <td class="text_heading_align">PRY CLARET BIB COCK - G5204A1</td>
-                    <td>84818020</td>
-                    <td>30.00</td>
-                    <td>NOS</td>
-                    <td class="text_align">812.80</td>
-                    <td class="text_align">24384.00</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>P823A1</td>
-                    <td class="text_heading_align">PRY TRIGON ANGLE VALVE</td>
-                    <td>84818020</td>
-                    <td>20.00</td>
-                    <td>NOS</td>
-                    <td class="text_align">416.64</td>
-                    <td class="text_align">8332.80</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>G523A1</td>
-                    <td class="text_heading_align">PRY CLARET TWO WAY BIB COCK-T4667A1</td>
-                    <td>84818020</td>
-                    <td>10.00</td>
-                    <td>NOS</td>
-                    <td class="text_align">1277.25</td>
-                    <td class="text_align">12772.50</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>P905A1</td>
-                    <td class="text_heading_align">PRY SPLASH HEALTH FAUCET</td>
-                    <td>84818020</td>
-                    <td>10.00</td>
-                    <td>NOS</td>
-                    <td class="text_align">635.21</td>
-                    <td class="text_align">6352.10</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>H421A1</td>
-                    <td class="text_heading_align">PRY CLARET WALL MOUNTED SINK COCK</td>
-                    <td>39229000</td>
-                    <td>6.00</td>
-                    <td>NOS</td>
-                    <td class="text_align">1372.87</td>
-                    <td class="text_align">8237.20</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Amount in Words & Charges (30% increase applied) -->
-        <table style="margin-bottom:10px;">
             <tr>
-                <td width="70%" class="amount-words bold">
-                    InvoiceTotal (Amount in words): Rupees Ninety-Six Thousand Four Hundred Forty One Only
+                <td align="center">1</td>
+                <td>T4604A1</td>
+                <td>PRY CLARET BIB COCK - G5204A1</td>
+                <td align="center">84818020</td>
+                <td align="center">30.00</td>
+                <td align="center">NOS</td>
+                <td align="right">1001.00</td>
+                <td align="right">30,030.00</td>
+            </tr>
+
+            <tr>
+                <td align="center">2</td>
+                <td>T4601A1</td>
+                <td>PRY CLARET PILLAR COCK - G5201A1</td>
+                <td align="center">84818020</td>
+                <td align="center">10.00</td>
+                <td align="center">NOS</td>
+                <td align="right">1,036.75</td>
+                <td align="right">10,367.50</td>
+            </tr>
+
+            <tr>
+                <td align="center">3</td>
+                <td>G9003A1</td>
+                <td>PRY STANDARD ANGLE VALVE</td>
+                <td align="center">84818020</td>
+                <td align="center">21.00</td>
+                <td align="center">NOS</td>
+                <td align="right">500.50</td>
+                <td align="right">10,510.50</td>
+            </tr>
+
+            <tr>
+                <td align="center">4</td>
+                <td>E80901C</td>
+                <td>PRY SLIMLINE SINGLE FLUSH TANK WHITE ( ECONOMY )</td>
+                <td align="center">39229000</td>
+                <td align="center">10.00</td>
+                <td align="center">NOS</td>
+                <td align="right">1,229.80</td>
+                <td align="right">12,298.00</td>
+            </tr>
+
+            <tr>
+                <td align="center">5</td>
+                <td>T9899A1</td>
+                <td>PRY FULL THREAD WASTE COUPLING 80 MM</td>
+                <td align="center">84818020</td>
+                <td align="center">15.00</td>
+                <td align="center">NOS</td>
+                <td align="right">393.25</td>
+                <td align="right">5,898.75</td>
+            </tr>
+
+            <tr>
+                <td align="center">6</td>
+                <td>T9809A1</td>
+                <td>PRY OVER HEAD SHOWER WITH ARM 125MM</td>
+                <td align="center">39229000</td>
+                <td align="center">15.00</td>
+                <td align="center">NOS</td>
+                <td align="right">1,251.25</td>
+                <td align="right">18,768.75</td>
+            </tr>
+
+            <tr>
+                <td align="center">7</td>
+                <td>T4612A1</td>
+                <td>PRY CLARET CONCEALED STOP COCK 3/4 (WITH TRIM)</td>
+                <td align="center">84818020</td>
+                <td align="center">10.00</td>
+                <td align="center">NOS</td>
+                <td align="right">1,179.75</td>
+                <td align="right">11,797.50</td>
+            </tr>
+
+            <tr>
+                <td colspan="7" align="right"><b>SUB TOTAL Nos : 111.00</b></td>
+                <td align="right"><b>99,670.00</b></td>
+            </tr>
+
+            <tr>
+                <td colspan="5">
+                    <b>InvoiceTotal (Amount in words):</b><br>
+                    Rupees One Lakh Seventeen Thousand Six Hundred Fifty Only
                 </td>
-                <td>
+
+                <td colspan="2" align="right">
                     LOADING CHARGE<br>
                     SGST 9%<br>
-                    CGST 9%<br>
+                    CGST 9%<br><br>
                     Round Off
                 </td>
-                <td class="text-right">
-                    169.65<br>
-                    7355.62<br>
-                    7355.62<br>
-                    -0.89
+
+                <td align="right">
+                    148.00<br>
+                    8,970.30<br>
+                    8,970.30<br><br>
+                    -0.60
                 </td>
             </tr>
-        </table>
 
-        <!-- Final Total - Increased by 30% -->
-        <table class="total-row bordered">
             <tr>
-                <td class="bold text-right">Invoice Total ₹</td>
-                <td width="150" class="bold text-center">96,441.00</td>
+                <td colspan="6"></td>
+                <td align="right"><b>Invoice Total ₹</b></td>
+                <td align="right"><b>117,650.00</b></td>
             </tr>
+
         </table>
 
-        <!-- Tax Summary - Updated with 30% increase -->
-        <table class="items-table" style="margin-top:15px;">
-            <thead>
-                <tr>
-                    <th>HSN/SAC Code</th>
-                    <th>Quantity</th>
-                    <th>Taxable Value</th>
-                    <th colspan="2">CGST</th>
-                    <th colspan="2">SGST</th>
-                    <th colspan="2">IGST</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>Rate</th>
-                    <th>Value</th>
-                    <th>Rate</th>
-                    <th>Value</th>
-                    <th>Rate</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>39221000</td>
-                    <td>2.00</td>
-                    <td>3,757</td>
-                    <td>9%</td>
-                    <td>338</td>
-                    <td>9%</td>
-                    <td>338</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>39229000</td>
-                    <td>26.00</td>
-                    <td>25,962</td>
-                    <td>9%</td>
-                    <td>2,337</td>
-                    <td>9%</td>
-                    <td>2,337</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>84818020</td>
-                    <td>70.00</td>
-                    <td>51,841</td>
-                    <td>9%</td>
-                    <td>4,666</td>
-                    <td>9%</td>
-                    <td>4,666</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr class="total-row">
-                    <td colspan="2">Total value</td>
-                    <td>81,560</td>
-                    <td></td>
-                    <td>7,341</td>
-                    <td></td>
-                    <td>7,341</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
 
-        <table class="full-width">
-            <tr>
-                <td class="header no-border" style="font-size: 13px;">
-                    <b>Bank Details :</b>
-                    KOTAK MAHINDRA BANK R.S.PURAM BRANCH &nbsp;&nbsp; A/c no:5746005388, &nbsp;&nbsp; IFS CODE -
-                    KKBK0000490, &nbsp;&nbsp; PAN No.: AAIFB2142G
-                </td>
-            </tr>
-            <tr>
-                <td class="no-border bold" style="background-color: #f0f0f0; padding: 8px;">
-                    NOTE : Godown lunch timing 1.30 to 2.30 p.m.
-                </td>
-            </tr>
-        </table>
-
-        <br><br>
+        <!-- GST SUMMARY TABLE -->
 
         <table width="100%" border="1" cellspacing="0" cellpadding="6"
-            style="border-collapse: collapse; font-size:14px;">
+            style="border-collapse:collapse;font-family:serif;font-size:14px;text-align:center;margin-top:10px;">
 
-            <!-- Header Row -->
+            <tr style="background:#efefef;">
+                <th rowspan="2" width="15%">HSN / <br>SAC CODE</th>
+                <th rowspan="2" width="10%">Quantity</th>
+                <th rowspan="2" width="18%">Taxable Value</th>
+                <th colspan="2" width="18%">CGST</th>
+                <th colspan="2" width="18%">SGST</th>
+                <th colspan="2" width="18%">IGST</th>
+            </tr>
 
+            <tr style="background:#efefef;">
+                <th>Rate</th>
+                <th>Value</th>
+                <th>Rate</th>
+                <th>Value</th>
+                <th>Rate</th>
+                <th>Value</th>
+            </tr>
 
-            <!-- Bank Details Row -->
             <tr>
-                <td colspan="8" style="font-weight:bold;">
-                    KOTAK MAHINDRA BANK R.S.PURAM BRANCH &nbsp;&nbsp;&nbsp;
+                <td>39229000</td>
+                <td>25.00</td>
+                <td align="right">31,067.00</td>
+                <td>9%</td>
+                <td align="right">2,796.00</td>
+                <td>9%</td>
+                <td align="right">2,796.00</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>84818020</td>
+                <td>86.00</td>
+                <td align="right">68,603.00</td>
+                <td>9%</td>
+                <td align="right">6,174.30</td>
+                <td>9%</td>
+                <td align="right">6,174.30</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><b>Total value</b></td>
+                <td align="right"><b>99,670.00</b></td>
+                <td></td>
+                <td align="right"><b>8,970.30</b></td>
+                <td></td>
+                <td align="right"><b>8,970.30</b></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+        </table>
+
+
+        <!-- BANK DETAILS -->
+        <table width="100%" border="1" cellspacing="0" cellpadding="6"
+            style="border-collapse:collapse;font-family:serif;font-size:14px;margin-top:8px;">
+
+            <tr>
+                <td>
+                    <b>Bank Details :</b><br>
+                    KOTAK MAHINDRA BANK R.S.PURAM BRANCH &nbsp;&nbsp;
                     A/c no:5746005388,&nbsp;&nbsp;
                     IFS CODE - KKBK0000490,&nbsp;&nbsp;
                     PAN No.: AAIFB2142G
                 </td>
             </tr>
 
-            <!-- NOTE Row -->
-            <tr>
-                <td colspan="8" style="font-weight:bold;">
-                    NOTE : Godown lunch timing 1.30 to 2.30 p.m.
+            <tr style="background:#f5f5f5;">
+                <td>
+                    <b>NOTE : Godown lunch timing 1.30 to 2.30 p.m.</b>
                 </td>
             </tr>
 
-            <!-- Signature Section -->
+        </table>
+
+        <table width="100%" border="1" cellspacing="0" cellpadding="8"
+            style="border-collapse:collapse;font-family:serif;font-size:14px;">
+
             <tr>
-                <td colspan="2" style="height:60px;">
-                    <b>Receiver Name :</b>
+
+                <!-- LEFT COLUMN (WITH INTERNAL SPLIT) -->
+                <td width="25%" style="padding:0;">
+
+                    <table width="100%" border="1" cellspacing="0" cellpadding="8"
+                        style="border-collapse:collapse;border:none;">
+
+                        <tr>
+                            <td style="border-left:none;border-right:none;border-top:none;">
+                                <b>Receiver Name :</b>
+                                <br><br><br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="border-left:none;border-right:none;border-bottom:none;">
+                                <b>Mobile No :</b>
+                                <br>
+                            </td>
+                        </tr>
+
+                    </table>
+
                 </td>
 
-                <td colspan="2" style="text-align:center; font-weight:bold;">
-                    Received the materials in good condition
+
+                <!-- CUSTOMER SIGNATURE -->
+                <td width="35%" align="center" valign="top">
+
+                    <b>Received the materials in good condition</b>
+
+                    <br><br><br><br><br><br>
+
+                    <b>Customer Signature</b>
+
                 </td>
 
-                <td colspan="1" style="text-align:center;">
-                    Delivered by
+
+                <!-- DELIVERED BY -->
+                <td width="20%" align="center" valign="top">
+
+                    <b>Delivered by</b>
+
+                    <br><br><br><br><br><br>
+
                 </td>
 
-                <td colspan="3" style="text-align:center; font-weight:bold;">
-                    For &nbsp; BEAUTYWARES<br><br>
-                 </td>
+
+                <!-- COMPANY SIGN -->
+                <td width="20%" align="center" valign="top">
+
+                    <b>For&nbsp;&nbsp;BEAUTYWARES</b>
+
+                    <br><br><br><br><br><br>
+
+                    Authorised Signatory
+
+                </td>
+
             </tr>
 
-            
+        </table>
 
+        <!-- FOOTER -->
+        <table width="100%" style="margin-top:10px;font-family:serif;font-size:13px;">
+            <tr>
+                <td>Printed By SAP BUSINESS ONE</td>
+                <td align="center">Subject to Coimbatore Jurisdiction</td>
+                <td align="center">E &amp; OE</td>
+                <td align="right">Page 1</td>
+            </tr>
         </table>
     </div>
 </body>
