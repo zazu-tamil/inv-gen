@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax Invoice - SID/6361/2025-26</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: Arial, Helvetica, sans-serif; background:#ccc; color:#000; font-size:11px; line-height:1.3; }
+
+.page {
+  width: 794px;
+  margin: 20px auto;
+  background: #fff;
+}
+.page2 {
+  width: 794px;
+  margin: 24px auto 20px;
+  background: #fff;
+}
+
+.b   { font-weight: bold; }
+.bi  { font-weight: bold; font-style: italic; }
+.i   { font-style: italic; }
+.tc  { text-align: center; }
+.tr  { text-align: right; }
+.tl  { text-align: left; }
+
+.s1 {
+  display: flex;
+  border: 1px solid #000;
+  border-bottom: none;
+  height: 26px;
+}
+.s1-title {
+  flex: 1;
+  border-right: 1px solid #000;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; font-size: 13px; letter-spacing: 0.5px;
+}
+.s1-einv {
+  width: 152px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; font-size: 11px;
+}
+
+.s2 {
+  display: flex;
+  border: 1px solid #000;
+  border-top: none;
+  border-bottom: none;
+  min-height: 110px;
+}
+.s2-left {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+}
+.s2-left table { border-collapse: collapse; }
+.s2-left table td { padding: 1px 0; vertical-align: top; line-height: 1.3; }
+.s2-left table td:first-child { font-weight: bold; white-space: nowrap; padding-right: 5px; min-width: 58px; }
+.s2-right {
+  width: 152px;
+  border-left: 1px solid #000;
+  display: flex; align-items: center; justify-content: center;
+}
+.qr {
+  width: 110px; height: 110px;
+  border: 1px solid #999;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #bbb; background: #f8f8f8;
+  overflow: hidden;
+}
+.qr img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+.s3 {
+  display: flex;
+  border: 1px solid #000;
+  border-top: 1px solid #000;
+  border-bottom: none;
+}
+
+.s3-left {
+  width: 352px;
+  border-right: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+}
+
+.s3-company {
+  line-height: 1.3;
+  border-bottom: 1px solid #000;
+}
+.logo-row { display: flex; gap: 6px; align-items: flex-start; }
+.csk-logo {
+  width: 55px; height: 48px;
+  border: 2px solid #bbb;
+  background: #efefef;
+  flex-shrink: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.csk-logo img { width: 100%; height: 100%; object-fit: contain; }
+.csk-logo .big { font-size: 17px; font-weight: bold; color: #cc0000; font-style: italic; font-family: 'Times New Roman', serif; line-height: 1; }
+.csk-logo .reg { font-size: 11px; color: #666; line-height: 1; }
+.co-name { font-weight: bold; font-size: 11px; line-height: 1.2; margin-bottom: 1px; }
+
+.s3-consignee {
+  padding: 3px 8px 4px 8px;
+  line-height: 1.3;
+  border-bottom: 1px solid #000;
+}
+.lbl  { font-size: 11px; font-weight: bold; margin-bottom: 1px; }
+.aname { font-weight: bold; font-size: 11px; }
+
+.s3-buyer {
+  padding: 3px 8px 4px 8px;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.s3-right {
+  flex: 1;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  flex: 1;
+}
+.meta-tbl td {
+  padding: 2px 5px;
+  vertical-align: top;
+  line-height: 1.3;
+  border-bottom: 1px solid #000;
+  font-size: 11px;
+}
+.meta-tbl td.r { border-right: 1px solid #000; width: 53%; }
+.meta-tbl td.last { border-bottom: none; }
+
+.items-wrap {
+  border: 1px solid #000;
+  border-bottom: none;
+}
+.items-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  table-layout: fixed;
+}
+.items-tbl colgroup col:nth-child(1)  { width: 14px; }
+.items-tbl colgroup col:nth-child(2)  { width: 184px; }
+.items-tbl colgroup col:nth-child(3)  { width: 64px; }
+.items-tbl colgroup col:nth-child(4)  { width: 64px; }
+.items-tbl colgroup col:nth-child(5)  { width: 64px; }
+.items-tbl colgroup col:nth-child(6)  { width: 64px; }
+.items-tbl colgroup col:nth-child(7)  { width: 64px; }
+.items-tbl colgroup col:nth-child(8)  { width: 25px; }
+.items-tbl colgroup col:nth-child(9)  { width: 96px; }
+.items-tbl th {
+  border: 1px solid #000;
+  padding: 2px 3px;
+  text-align: center;
+  font-weight: bold;
+  vertical-align: middle;
+  line-height: 1.25;
+  background: #fff;
+}
+.items-tbl td {
+  border: 1px solid #000;
+  padding: 2px 3px;
+  vertical-align: middle;
+  line-height: 1.3;
+}
+.nb  { border: none !important; }
+.subn { font-size: 11px; font-style: italic; display: block; line-height: 1.2; }
+
+.s-words {
+  border: 1px solid #000;
+  border-bottom: none;
+  padding: 3px 8px;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  line-height: 1.3;
+}
+
+.tax-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+.tax-tbl th, .tax-tbl td {
+  border: 1px solid #000;
+  padding: 2px 4px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.3;
+}
+.tax-tbl td.tl { text-align: left; }
+.tax-tbl td.tr { text-align: right; }
+
+.s-taxwords {
+  border: 1px solid #000;
+  border-bottom: none;
+  padding: 3px 8px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.s-bank {
+  display: flex;
+  border: 1px solid #000;
+  border-bottom: none;
+  min-height: 80px;
+}
+.bank-left {
+  flex: 1;
+  border-right: 1px solid #000;
+  padding: 4px 8px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+.bank-left table { border-collapse: collapse; }
+.bank-left table td { padding: 1px 2px; vertical-align: top; }
+.bank-right {
+  width: 270px;
+  padding: 4px 10px;
+  font-size: 11px;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.s-decl {
+  display: flex;
+  border: 1px solid #000;
+  border-bottom: none;
+  min-height: 40px;
+}
+.decl-left {
+  flex: 1;
+  border-right: 1px solid #000;
+  padding: 3px 8px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.decl-right {
+  width: 270px;
+  padding: 3px 10px;
+  font-size: 11px;
+  text-align: right;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+}
+
+.s-footer {
+  border: 1px solid #000;
+  text-align: center;
+  padding: 3px;
+  font-size: 11px;
+}
+
+/* PAGE 2 */
+.p2-s1 {
+  display: flex;
+  border: 1px solid #000;
+  border-bottom: none;
+  height: 26px;
+}
+.p2-s1-title {
+  flex: 1;
+  border-right: 1px solid #000;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; font-size: 13px; letter-spacing: 0.5px;
+}
+.p2-s1-right {
+  width: 152px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; font-size: 11px;
+}
+
+.p2-meta {
+  display: flex;
+  border: 1px solid #000;
+  border-top: none;
+  border-bottom: none;
+  min-height: 110px;
+}
+.p2-meta-left {
+  flex: 1;
+  padding: 7px 10px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+.p2-meta-left table { border-collapse: collapse; }
+.p2-meta-left table td { padding: 1px 0; vertical-align: top; line-height: 1.4; }
+.p2-meta-left table td:first-child { font-weight: bold; white-space: nowrap; padding-right: 5px; min-width: 60px; }
+.p2-meta-right {
+  width: 152px;
+  border-left: 1px solid #000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px;
+}
+
+.p2-sec {
+  border: 1px solid #000;
+  border-top: none;
+  border-bottom: none;
+  padding: 4px 8px;
+  font-size: 11px;
+  line-height: 1.3;
+}
+.p2-sec-first { border-top: 1px solid #000; }
+.p2-sec-title { font-weight: bold; font-size: 11px; margin-bottom: 3px; }
+
+.addr-row { display: flex; }
+.addr-from { flex: 1; padding-right: 16px; }
+.addr-to   { flex: 1; }
+.addr-sub  { font-weight: bold; margin-top: 4px; margin-bottom: 1px; }
+
+.g-tbl {
+  width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 3px;
+}
+.g-tbl th { border: 1px solid #000; padding: 2px 4px; font-weight: bold; vertical-align: top; line-height: 1.25; }
+.g-tbl td { border: 1px solid #000; padding: 2px 4px; vertical-align: middle; }
+.g-tbl td.tr { text-align: right; }
+.g-tbl td.tc { text-align: center; }
+
+.p2-spacer {
+  border: 1px solid #000;
+  border-top: none;
+  border-bottom: none;
+  height: 222px;
+}
+.p2-totals {
+  border: 1px solid #000;
+  border-top: none;
+  border-bottom: none;
+  padding: 4px 8px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+.p2-transport {
+  border: 1px solid #000;
+  border-top: none;
+  border-bottom: none;
+  padding: 4px 8px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+.p2-vehicle {
+  border: 1px solid #000;
+  border-top: none;
+  padding: 4px 8px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+@media print {
+  body { background: white; }
+  .page, .page2 { margin: 0; }
+  .page2 { page-break-before: always; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: TAX INVOICE ==================== -->
+<div class="page">
+
+  <!-- S1: Title -->
+  <div class="s1">
+    <div class="s1-title">TAX INVOICE</div>
+    <div class="s1-einv">e-Invoice</div>
+  </div>
+
+  <!-- S2: IRN + QR -->
+  <div class="s2">
+    <div class="s2-left">
+      <table>
+        <tr>
+          <td>IRN</td>
+          <td>: 1b9d8c31c32426aeddc9891171f87c13f6ea89549-<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f65486ed05df993cda4826e</td>
+        </tr>
+        <tr>
+          <td>Ack No.</td>
+          <td>: 152524029443632</td>
+        </tr>
+        <tr>
+          <td>Ack Date</td>
+          <td>: <b>13-Dec-25</b></td>
+        </tr>
+      </table>
+    </div>
+    <div class="s2-right">
+      <div class="qr">
+        <img src="../../../../asset/images/csk-qr-code.png" alt="QR Code" onerror="this.parentNode.innerHTML='[QR CODE]'">
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: Company + Consignee + Buyer + Meta -->
+  <div class="s3">
+    <div class="s3-left">
+
+      <div class="s3-company">
+        <div class="logo-row">
+          <div class="csk-logo">
+            <img src="../../../../asset/images/csk-company-logo.png" alt="CSK"
+              onerror="this.style.display='none';this.parentNode.innerHTML='<span class=big>CSK</span><span class=reg>®</span>'">
+          </div>
+          <div>
+            <div class="co-name">C S K TUBE CORPORATION</div>
+            <div>3/170 A 4-1, SIDCO INDUSTRIAL ESTATE</div>
+            <div>SIDCO POST, COIMBATORE -641021</div>
+            <div>GST NO : 33AACFC0315N1ZU</div>
+            <div>PHONE : 9150018770</div>
+            <div>GSTIN/UIN: 33AACFC0315N1ZU</div>
+            <div>State Name : Tamil Nadu, Code : 33</div>
+            <div>E-Mail : csksidco2@gmail.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s3-consignee">
+        <div class="lbl">Consignee (Ship to)</div>
+        <div class="aname">A S ENTERPRISES</div>
+        <div>DL AT AIRFORCE ADMINISTRATIVE COLLEGE</div>
+        <div>RACE COURSE</div>
+        <div>COIMBATORE-641018</div>
+        <div>GSTIN/UIN &nbsp;&nbsp;: 33AOBPS9291N1Z8</div>
+        <div>State Name &nbsp;: Tamil Nadu, Code : 33</div>
+      </div>
+
+      <div class="s3-buyer">
+        <div class="lbl">Buyer (Bill to)</div>
+        <div class="aname">A S ENTERPRISES</div>
+        <div>32, ALAMELU MANGAMMAL LAYOUT 1st STREET</div>
+        <div>PULIYAKULAM</div>
+        <div>COIMBATORE-641045</div>
+        <div>GSTIN/UIN &nbsp;&nbsp;: 33AOBPS9291N1Z8</div>
+        <div>State Name &nbsp;: Tamil Nadu, Code : 33</div>
+      </div>
+
+    </div>
+
+    <div class="s3-right">
+      <table class="meta-tbl">
+        <tr>
+          <td class="r">
+            Invoice No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e-Way Bill No.<br>
+            <b>SID/6361/2025-26</b>&nbsp;&nbsp;&nbsp;<b>501923407386</b>
+          </td>
+          <td>Dated<br><b>13-Dec-25</b></td>
+        </tr>
+        <tr>
+          <td class="r">Delivery Note</td>
+          <td>Mode/Terms of Payment</td>
+        </tr>
+        <tr>
+          <td class="r">Reference No. &amp; Date.</td>
+          <td>Other References</td>
+        </tr>
+        <tr>
+          <td class="r">Buyer's Order No.<br><b>TELE ORDER</b></td>
+          <td>Dated<br><b>13-Dec-25</b></td>
+        </tr>
+        <tr>
+          <td class="r">Dispatch Doc No.</td>
+          <td>Delivery Note Date</td>
+        </tr>
+        <tr>
+          <td class="r">Dispatched through<br><b>TN99 AE 6340</b></td>
+          <td>Destination</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="last" style="height:152px;vertical-align:top;">Terms of Delivery</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Items table -->
+  <div class="items-wrap">
+    <table class="items-tbl">
+      <colgroup>
+        <col><col><col><col><col><col><col><col><col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th style="width:14px;">Sl<br>No.</th>
+          <th style="width:184px;text-align:left;padding-left:5px;">Description of<br>Goods and Services</th>
+          <th style="width:64px;">Code</th>
+          <th style="width:64px;">HSN/SAC</th>
+          <th style="width:64px;">Quantity</th>
+          <th style="width:64px;">Kgs</th>
+          <th style="width:64px;">Rate</th>
+          <th style="width:25px;">per</th>
+          <th style="width:96px;">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tc b">1</td>
+          <td class="tl b">150 X 150 X 6.00 mm MS<br>SQUARE TATA</td>
+          <td></td>
+          <td class="tc">73066100</td>
+          <td class="tc b">54.60 METER</td>
+          <td class="tr b">1,469.000</td>
+          <td class="tr">65.62</td>
+          <td class="tc">KG</td>
+          <td class="tr b">96,395.78</td>
+        </tr>
+        <tr>
+          <td class="tc b">2</td>
+          <td class="tl b">100 X 100 X 5 &nbsp;SQR<br>PIPE TATA</td>
+          <td></td>
+          <td class="tc">730690</td>
+          <td class="tc b">78.00 METER</td>
+          <td class="tr b"><span class="subn">(7.00 LENGTH)</span>1,118.000</td>
+          <td class="tr">64.58</td>
+          <td class="tc">KG</td>
+          <td class="tr b">72,200.44</td>
+        </tr>
+        <tr>
+          <td class="tc b">3</td>
+          <td class="tl b">80 X 40 X 2.9 &nbsp;RECT<br>PIPE TATA</td>
+          <td></td>
+          <td class="tc">730690</td>
+          <td class="tc b">226.20 METER</td>
+          <td class="tr b"><span class="subn">(10.00 LENGTH)</span>1,131.000</td>
+          <td class="tr">64.58</td>
+          <td class="tc">KG</td>
+          <td class="tr b">73,039.98</td>
+        </tr>
+        <tr>
+          <td class="tc b">4</td>
+          <td class="tl b">LOADING CHARGES - GST</td>
+          <td></td>
+          <td class="tc">998860</td>
+          <td></td>
+          <td class="tr b"><span class="subn">(29.00 LENGTH)</span></td>
+          <td></td>
+          <td class="tc">KG</td>
+          <td class="tr b">937.30</td>
+        </tr>
+        <tr>
+          <td class="tc b">5</td>
+          <td class="tl b">DELIVERY CHARGES &nbsp;GST</td>
+          <td></td>
+          <td class="tc">998860</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="tc">KG</td>
+          <td class="tr b">2,860.00</td>
+        </tr>
+
+        <tr>
+          <td class="nb" colspan="8"></td>
+          <td class="tr b">2,45,433.50</td>
+        </tr>
+        <tr>
+          <td class="nb" colspan="6"></td>
+          <td colspan="2" class="tr bi" style="border:1px solid #000;">CGST &nbsp;&nbsp;&nbsp;&nbsp;9%</td>
+          <td class="tr b">22,089.02</td>
+        </tr>
+        <tr>
+          <td class="nb" colspan="6"></td>
+          <td colspan="2" class="tr bi" style="border:1px solid #000;">SGST &nbsp;&nbsp;&nbsp;&nbsp;9%</td>
+          <td class="tr b">22,089.02</td>
+        </tr>
+        <tr>
+          <td class="nb i" colspan="2" style="font-size:11px;">Add :</td>
+          <td class="nb bi" colspan="5">ROUNDED OFF</td>
+          <td class="nb"></td>
+          <td class="tr b">(+)0.46</td>
+        </tr>
+        <tr><td class="nb" colspan="9" style="height:6px;"></td></tr>
+        <tr style="border-top:2px solid #000;">
+          <td colspan="2" class="tl b" style="border:1px solid #000;padding-left:8px;">Total</td>
+          <td style="border:1px solid #000;"></td>
+          <td style="border:1px solid #000;"></td>
+          <td class="tc b" style="border:1px solid #000;">358.80 METER</td>
+          <td class="tr b" style="border:1px solid #000;">3718</td>
+          <td style="border:1px solid #000;"></td>
+          <td style="border:1px solid #000;"></td>
+          <td class="tr b" style="border:1px solid #000;">&#x20B9;&nbsp;2,89,612.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Amount in words -->
+  <div class="s-words">
+    <div>
+      <div style="font-size:11px;">Amount Chargeable (in words)</div>
+      <div class="b" style="font-size:11px;">INR Two Lakh Eighty Nine Thousand Six Hundred Twelve Only</div>
+    </div>
+    <div class="i" style="font-size:11px;">E. &amp; O.E</div>
+  </div>
+
+  <!-- HSN Tax Summary -->
+  <table class="tax-tbl">
+    <thead>
+      <tr>
+        <th rowspan="2" style="text-align:center;">HSN/SAC</th>
+        <th rowspan="2" style="width:102px;">Taxable<br>Value</th>
+        <th colspan="2">CGST</th>
+        <th colspan="2">SGST/UTGST</th>
+        <th rowspan="2" style="width:90px;">Total<br>Tax Amount</th>
+      </tr>
+      <tr>
+        <th style="width:40px;">Rate</th>
+        <th style="width:82px;">Amount</th>
+        <th style="width:40px;">Rate</th>
+        <th style="width:82px;">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tl">73066100</td>
+        <td class="tr">96,395.78</td>
+        <td class="tc">9%</td>
+        <td class="tr">8,675.62</td>
+        <td class="tc">9%</td>
+        <td class="tr">8,675.62</td>
+        <td class="tr">17,351.24</td>
+      </tr>
+      <tr>
+        <td class="tl">730690</td>
+        <td class="tr">1,45,240.42</td>
+        <td class="tc">9%</td>
+        <td class="tr">13,071.64</td>
+        <td class="tc">9%</td>
+        <td class="tr">13,071.64</td>
+        <td class="tr">26,143.28</td>
+      </tr>
+      <tr>
+        <td class="tl">998860</td>
+        <td class="tr">3,797.30</td>
+        <td class="tc">9%</td>
+        <td class="tr">341.76</td>
+        <td class="tc">9%</td>
+        <td class="tr">341.76</td>
+        <td class="tr">683.52</td>
+      </tr>
+      <tr>
+        <td class="tl b">Total</td>
+        <td class="tr b">2,45,433.50</td>
+        <td></td>
+        <td class="tr b">22,089.02</td>
+        <td></td>
+        <td class="tr b">22,089.02</td>
+        <td class="tr b">44,178.04</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Tax amount in words -->
+  <div class="s-taxwords">
+    <b>Tax Amount (in words) :</b>&nbsp;&nbsp;INR Forty Four Thousand One Hundred Seventy Eight and Four paise Only
+  </div>
+
+  <!-- Bank + Signature -->
+  <div class="s-bank">
+    <div class="bank-left">
+      <div class="b" style="margin-bottom:3px;">Company's Bank Details</div>
+      <table>
+        <tr>
+          <td style="min-width:125px;">A/c Holder's Name</td>
+          <td>:&nbsp;<b>CSK TUBE CORPORATION</b></td>
+        </tr>
+        <tr>
+          <td>Bank Name</td>
+          <td>:&nbsp;<b>ICICI BANK</b></td>
+        </tr>
+        <tr>
+          <td>A/c No.</td>
+          <td>:&nbsp;<b>605305054586</b></td>
+        </tr>
+        <tr>
+          <td>Branch &amp; IFS Code</td>
+          <td>:&nbsp;COPPANAKKARA STREET, COIMBATORE &amp; ICIC0006053</td>
+        </tr>
+        <tr>
+          <td>SWIFT Code</td>
+          <td>&nbsp;&nbsp;:</td>
+        </tr>
+      </table>
+    </div>
+    <div class="bank-right">
+      <div class="b">for C S K TUBE CORPORATION</div>
+      <div class="i">Authorised Signatory</div>
+    </div>
+  </div>
+
+  <!-- Declaration -->
+  <div class="s-decl">
+    <div class="decl-left">
+      <div class="b">Declaration</div>
+      <div>We declare that this invoice shows the actual price of the goods described and that all particulars are true and</div>
+    </div>
+    <!-- <div class="decl-right">
+      <div class="i">Authorised Signatory</div>
+    </div> -->
+  </div>
+
+  <!-- Footer -->
+  <div class="s-footer">This is a Computer Generated Invoice</div>
+
+</div><!-- END PAGE 1 -->
+
+
+<!-- ==================== PAGE 2: e-WAY BILL ==================== -->
+<div class="page2">
+
+  <div class="p2-s1">
+    <div class="p2-s1-title">e-Way Bill</div>
+    <div class="p2-s1-right">e-Way Bill</div>
+  </div>
+
+  <div class="p2-meta">
+    <div class="p2-meta-left">
+      <table style="margin-bottom:6px;">
+        <tr><td>Doc No.</td><td>: SID/6361/2025-26</td></tr>
+        <tr><td>Date</td><td>: <b>13-Dec-25</b></td></tr>
+      </table>
+      <table>
+        <tr><td>IRN</td><td>: 1b9d8c31c32426aeddc9891171f87c13f6ea89549f65486ed05df993cda4826e</td></tr>
+        <tr><td>Ack No.</td><td>: 152524029443632</td></tr>
+        <tr><td>Ack Date</td><td>: 13-Dec-25</td></tr>
+      </table>
+    </div>
+    <div class="p2-meta-right">
+      <div class="qr">
+        <img src="../../../../asset/images/csk-qr-code.png" alt="QR Code" onerror="this.parentNode.innerHTML='[QR CODE]'">
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. e-Way Bill Details -->
+  <div class="p2-sec p2-sec-first">
+    <div class="p2-sec-title">1. e-Way Bill Details</div>
+    <table style="width:100%;border-collapse:collapse;font-size:11px;line-height:1.4;">
+      <tr>
+        <td style="width:33%;">e-Way Bill No. : <b>501923407386</b></td>
+        <td style="width:34%;">Mode : <b>1 - Road</b></td>
+        <td>Generated Date : <b>13-Dec-25 3:24 PM</b></td>
+      </tr>
+      <tr>
+        <td>Generated By : <b>33AACFC0315N1ZU</b></td>
+        <td>Approx Distance : <b>10 KM</b></td>
+        <td>Valid Upto : <b>14-Dec-25 11:59 PM</b></td>
+      </tr>
+      <tr>
+        <td>Supply Type : <b>Outward</b></td>
+        <td>Transaction Type : <b>Bill To - Ship To</b></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 2. Address Details -->
+  <div class="p2-sec">
+    <div class="p2-sec-title">2. Address Details</div>
+    <div class="addr-row">
+      <div class="addr-from">
+        <div class="b">From</div>
+        <div class="b">C S K TUBE CORPORATION</div>
+        <div>GSTIN : 33AACFC0315N1ZU</div>
+        <div>Tamil Nadu</div>
+        <div class="addr-sub">Dispatch From</div>
+        <div>3/170 A, 4-1, SIDCO INDUSTRIAL ESTATE, SIDCO<br>POST, COIMBATORE -641021, GST NO : 33AACFC0315N1ZU,<br>PHONE : 9150018770</div>
+      </div>
+      <div class="addr-to">
+        <div class="b">To</div>
+        <div class="b">A S ENTERPRISES</div>
+        <div>GSTIN : 33AOBPS9291N1Z8</div>
+        <div>Tamil Nadu</div>
+        <div class="addr-sub">Ship To</div>
+        <div>DL AT AIRFORCE ADMINISTRATIVE COLLEGE, RACE<br>COURSE, COIMBATORE-641018 COIMBATORE Tamil Nadu 641018</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Goods Details -->
+  <div class="p2-sec">
+    <div class="p2-sec-title">3. Goods Details</div>
+    <table class="g-tbl">
+      <thead>
+        <tr>
+          <th style="width:64px;">HSN<br>Code</th>
+          <th style="text-align:left;">Product Name &amp; Desc</th>
+          <th style="width:70px;text-align:center;">Quantity</th>
+          <th style="width:96px;text-align:right;">Taxable Amt</th>
+          <th style="width:68px;text-align:center;">Tax Rate<br>(C+S)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="b">73066100</td>
+          <td>150 X 150 X 6.00 mm MS SQUARE TATA &amp; STEEL TUBES</td>
+          <td class="tc">54.60 MTR</td>
+          <td class="tr b">96,395.78</td>
+          <td class="tc">9+9</td>
+        </tr>
+        <tr>
+          <td class="b">730690</td>
+          <td>100 X 100 X 5 &nbsp;SQR PIPE TATA &amp; 100 X 100 X 5 &nbsp;SQR PIPE TATA</td>
+          <td class="tc">78 MTR</td>
+          <td class="tr b">72,200.44</td>
+          <td class="tc">9+9</td>
+        </tr>
+        <tr>
+          <td class="b">730690</td>
+          <td>80 X 40 X 2.9 &nbsp;RECT PIPE TATA &amp; STEEL TUBES</td>
+          <td class="tc">226.20 MTR</td>
+          <td class="tr b">73,039.98</td>
+          <td class="tc">9+9</td>
+        </tr>
+        <tr>
+          <td class="b">998860</td>
+          <td>LOADING CHARGES - GST &amp; OTHERS</td>
+          <td class="tc">KGS</td>
+          <td class="tr b">937.30</td>
+          <td class="tc">9+9</td>
+        </tr>
+        <tr>
+          <td class="b">998860</td>
+          <td>DELIVERY CHARGES GST &amp; OTHERS</td>
+          <td class="tc">KGS</td>
+          <td class="tr b">2,860.00</td>
+          <td class="tc">9+9</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Blank spacer -->
+  <div class="p2-spacer"></div>
+
+  <!-- Totals -->
+  <div class="p2-totals" style="border-top:1px solid #000;">
+    <table style="width:100%;border-collapse:collapse;font-size:11px;line-height:1.4;">
+      <tr>
+        <td style="width:28%;">Tot.Taxable Amt &nbsp;: <b>2,45,433.50</b></td>
+        <td style="width:26%;">Other Amt &nbsp;: <b>(+)0.46</b></td>
+        <td style="width:22%;">Total Inv Amt</td>
+        <td>: <b>2,89,612.00</b></td>
+      </tr>
+      <tr>
+        <td>CGST Amt &nbsp;&nbsp;&nbsp;&nbsp;: <b>22,089.02</b></td>
+        <td>SGST Amt &nbsp;: <b>22,089.02</b></td>
+        <td colspan="2"></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 4. Transportation Details -->
+  <div class="p2-transport" style="border-top:1px solid #000;">
+    <div class="p2-sec-title">4. Transportation Details</div>
+    <table style="width:100%;border-collapse:collapse;font-size:11px;line-height:1.4;">
+      <tr>
+        <td style="width:50%;">Transporter ID &nbsp;&nbsp;:</td>
+        <td>Doc No. &nbsp;:</td>
+      </tr>
+      <tr>
+        <td>Name &nbsp;:</td>
+        <td>Date : <b>13-Dec-25</b></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 5. Vehicle Details -->
+  <div class="p2-vehicle" style="border-top:1px solid #000;">
+    <div class="p2-sec-title">5. Vehicle Details</div>
+    <table style="width:100%;border-collapse:collapse;font-size:11px;line-height:1.4;">
+      <tr>
+        <td style="width:34%;">Vehicle No. : <b>TN99AE6340</b></td>
+        <td style="width:33%;">From : <b>COIMBATORE</b></td>
+        <td>CEWB No. :</td>
+      </tr>
+    </table>
+  </div>
+
+</div><!-- END PAGE 2 -->
+
+</body>
+</html>
