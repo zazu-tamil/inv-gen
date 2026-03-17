@@ -17,5 +17,12 @@ if ($record['inv_design'] == '1') {
 } else if ($record['inv_design'] == '8') {
     include_once(VIEWPATH . 'page/invoice/invoice-design-8.php');
 }
+else if ($record['inv_design'] == '9') {
+    include_once(VIEWPATH . 'page/invoice/poornima-agencies.php');
+}
+else if ($record['inv_design'] == '10') {
+    include_once(VIEWPATH . 'page/invoice/rds-electric.php');
+}
 
 ?>
+
