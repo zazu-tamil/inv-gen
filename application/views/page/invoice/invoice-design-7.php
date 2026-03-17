@@ -38,8 +38,6 @@
 
         .header {
             border-bottom: 3px solid #000;
-            /* padding-bottom: 10px; */
-            /* margin-bottom: 15px; */
         }
 
         .logo {
@@ -415,7 +413,6 @@
                 </td>
             </tr>
 
-
         </table>
         <!-- ITEM TABLE -->
         <table width="100%" border="1" cellspacing="0" cellpadding="6"
@@ -439,8 +436,8 @@
                 <td align="center">84818020</td>
                 <td align="center">30.00</td>
                 <td align="center">NOS</td>
-                <td align="right">1001.00</td>
-                <td align="right">30,030.00</td>
+                <td align="right">1,101.10</td>
+                <td align="right">33,033.00</td>
             </tr>
 
             <tr>
@@ -450,8 +447,8 @@
                 <td align="center">84818020</td>
                 <td align="center">10.00</td>
                 <td align="center">NOS</td>
-                <td align="right">1,036.75</td>
-                <td align="right">10,367.50</td>
+                <td align="right">1,140.43</td>
+                <td align="right">11,404.25</td>
             </tr>
 
             <tr>
@@ -461,8 +458,8 @@
                 <td align="center">84818020</td>
                 <td align="center">21.00</td>
                 <td align="center">NOS</td>
-                <td align="right">500.50</td>
-                <td align="right">10,510.50</td>
+                <td align="right">550.55</td>
+                <td align="right">11,561.55</td>
             </tr>
 
             <tr>
@@ -472,8 +469,8 @@
                 <td align="center">39229000</td>
                 <td align="center">10.00</td>
                 <td align="center">NOS</td>
-                <td align="right">1,229.80</td>
-                <td align="right">12,298.00</td>
+                <td align="right">1,352.78</td>
+                <td align="right">13,527.80</td>
             </tr>
 
             <tr>
@@ -483,8 +480,8 @@
                 <td align="center">84818020</td>
                 <td align="center">15.00</td>
                 <td align="center">NOS</td>
-                <td align="right">393.25</td>
-                <td align="right">5,898.75</td>
+                <td align="right">432.58</td>
+                <td align="right">6,488.63</td>
             </tr>
 
             <tr>
@@ -494,8 +491,8 @@
                 <td align="center">39229000</td>
                 <td align="center">15.00</td>
                 <td align="center">NOS</td>
-                <td align="right">1,251.25</td>
-                <td align="right">18,768.75</td>
+                <td align="right">1,376.38</td>
+                <td align="right">20,645.63</td>
             </tr>
 
             <tr>
@@ -505,19 +502,19 @@
                 <td align="center">84818020</td>
                 <td align="center">10.00</td>
                 <td align="center">NOS</td>
-                <td align="right">1,179.75</td>
-                <td align="right">11,797.50</td>
+                <td align="right">1,297.73</td>
+                <td align="right">12,977.25</td>
             </tr>
 
             <tr>
                 <td colspan="7" align="right"><b>SUB TOTAL Nos : 111.00</b></td>
-                <td align="right"><b>99,670.00</b></td>
+                <td align="right"><b>109,637.11</b></td>
             </tr>
 
             <tr>
                 <td colspan="5">
                     <b>InvoiceTotal (Amount in words):</b><br>
-                    Rupees One Lakh Seventeen Thousand Six Hundred Fifty Only
+                    Rupees One Lakh Twenty Nine Thousand Four Hundred Twenty Three Only
                 </td>
 
                 <td colspan="2" align="right">
@@ -529,16 +526,16 @@
 
                 <td align="right">
                     148.00<br>
-                    8,970.30<br>
-                    8,970.30<br><br>
-                    -0.60
+                    9,867.34<br>
+                    9,867.34<br><br>
+                    -0.68
                 </td>
             </tr>
 
             <tr>
                 <td colspan="6"></td>
                 <td align="right"><b>Invoice Total ₹</b></td>
-                <td align="right"><b>117,650.00</b></td>
+                <td align="right"><b>129,423.00</b></td>
             </tr>
 
         </table>
@@ -570,11 +567,11 @@
             <tr>
                 <td>39229000</td>
                 <td>25.00</td>
-                <td align="right">31,067.00</td>
+                <td align="right">34,173.43</td>
                 <td>9%</td>
-                <td align="right">2,796.00</td>
+                <td align="right">3,075.61</td>
                 <td>9%</td>
-                <td align="right">2,796.00</td>
+                <td align="right">3,075.61</td>
                 <td></td>
                 <td></td>
             </tr>
@@ -582,22 +579,22 @@
             <tr>
                 <td>84818020</td>
                 <td>86.00</td>
-                <td align="right">68,603.00</td>
+                <td align="right">75,463.68</td>
                 <td>9%</td>
-                <td align="right">6,174.30</td>
+                <td align="right">6,791.73</td>
                 <td>9%</td>
-                <td align="right">6,174.30</td>
+                <td align="right">6,791.73</td>
                 <td></td>
                 <td></td>
             </tr>
 
             <tr>
                 <td colspan="2"><b>Total value</b></td>
-                <td align="right"><b>99,670.00</b></td>
+                <td align="right"><b>109,637.11</b></td>
                 <td></td>
-                <td align="right"><b>8,970.30</b></td>
+                <td align="right"><b>9,867.34</b></td>
                 <td></td>
-                <td align="right"><b>8,970.30</b></td>
+                <td align="right"><b>9,867.34</b></td>
                 <td></td>
                 <td></td>
             </tr>
